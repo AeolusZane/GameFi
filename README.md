@@ -14,7 +14,7 @@ Tags: `hardhat` `ethers.js` `solidity` `typescript` `react` `react-native` `web3
 以下是开发过程部分
 
 ## 项目架构
-结构使用monorepo，合约和前台部分分离，web和移动端分离
+monorepo，合约和前台部分分离，web和移动端分离
 
 - [x] 合约
 
