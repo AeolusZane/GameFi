@@ -2,16 +2,20 @@ node_modules
 .env
 
 # Hardhat files
-/cache
-/artifacts
+packages/contract/cache
+packages/contract/artifacts
 
 # TypeChain files
-/typechain
-/typechain-types
+packages/contract/typechain
+packages/contract/typechain-types
 
 # solidity-coverage files
-/coverage
-/coverage.json
+packages/contract/coverage
+packages/contract/coverage.json
+
+# artifacts
+packages/contract/artifacts
+
 
 # Hardhat Ignition default folder for deployments against a local node
 ignition/deployments/chain-1337
@@ -20,3 +24,4 @@ ignition/deployments/chain-1337
 package-lock.json
 pnpm-lock.yaml
 yarn.lock
+
