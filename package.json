@@ -7,7 +7,7 @@
   "scripts": {
     "compile": "pnpm --filter \"contract\" run compile",
     "node": "pnpm --filter \"contract\" node",
-    "deploy": "pnpm --filter \"contract\" run deploy",
+    "ignition": "pnpm --filter \"contract\" run ignition",
     "test:c": "pnpm --filter \"contract\" run test",
     "web": "pnpm --filter \"web-ui\" dev"
   }
