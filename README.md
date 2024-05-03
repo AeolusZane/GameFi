@@ -1,6 +1,16 @@
 # A GameFi Project
 Tags: `hardhat` `ethers.js` `solidity` `typescript` `react` `react-native` `web3.js`
 
+## deploy
+
+- `pnpm install`
+- `pnpm run node` 部署私链
+- `pnpm run compile` 编译合约
+- `pnpm run deploy` 部署合约
+- `pnpm run web` 启动web前台
+
+- `pnpm run test:c` 合约单元测试
+
 以下是开发过程部分
 
 ## 项目架构
@@ -65,12 +75,3 @@ mobile ToDo
 
 1.web端
 2.移动端 ToDo
-
-
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat ignition deploy ./ignition/modules/Lock.ts
-```

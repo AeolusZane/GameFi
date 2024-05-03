@@ -5,7 +5,10 @@
   "author": "AeolusZane <1393649219@qq.com>",
   "license": "MIT",
   "scripts": {
+    "compile": "pnpm --filter \"contract\" run compile",
+    "node": "pnpm --filter \"contract\" node",
     "deploy": "pnpm --filter \"contract\" run deploy",
-    "test:c": "pnpm --filter \"contract\" run test"
+    "test:c": "pnpm --filter \"contract\" run test",
+    "web": "pnpm --filter \"web-ui\" dev"
   }
 }
