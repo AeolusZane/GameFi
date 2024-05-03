@@ -1,0 +1,11 @@
+{
+  "name": "gamefi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "AeolusZane <1393649219@qq.com>",
+  "license": "MIT",
+  "scripts": {
+    "deploy": "pnpm --filter \"contract\" run deploy",
+    "test:c": "pnpm --filter \"contract\" run test"
+  }
+}
