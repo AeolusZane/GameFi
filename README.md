@@ -68,7 +68,7 @@ mobile [ToDo]
 `cd web-ui`
 `pnpm install`
 
-## 功能
+### 功能
 - 购买英雄
 - 查看英雄
 - 查看英雄属性排名
