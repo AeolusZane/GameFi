@@ -16,11 +16,11 @@ Tags: `hardhat` `ethers.js` `solidity` `typescript` `react` `react-native` `web3
 ## 项目架构
 结构使用monorepo，合约和前台部分分离，web和移动端分离
 
-- [x] 合约 ✅
+- [x] 合约
 
-- [] web In Progress
+web [In Progress]
 
-- [] mobile ToDo
+mobile [ToDo]
 
 ## 合约部分
 
