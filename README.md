@@ -1,4 +1,4 @@
-# A GameFi Project
+# A NFT Project
 Tags: `hardhat` `ethers.js` `solidity` `typescript` `react` `react-native` `web3.js`
 
 ## deploy
