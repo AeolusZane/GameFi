@@ -1,0 +1,28 @@
+.user-info{
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    gap:7px;
+}
+
+.card {
+    padding: 2em;
+    display: flex;
+    flex-direction: row;
+    gap:12px;
+}
+
+.heros-container{
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.hero-info{
+    border-radius: 5px;
+    border-color: blanchedalmond;
+    border: 1px solid;
+    text-align: left;
+    padding:0 1em;
+}
+  

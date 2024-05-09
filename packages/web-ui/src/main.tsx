@@ -5,10 +5,13 @@ import './index.css'
 import { init } from './core/init'
 
 init(); // 初始时链接钱包
+import Web3Provider from './components/Web3Provider.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
+    <Web3Provider>
+      <App />
+    </Web3Provider>
   </React.StrictMode>,
 )
 

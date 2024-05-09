@@ -1,5 +1,5 @@
 import Web3 from "web3";
-function getEth() {
+function getEth(): any {
     // @ts-ignore
     const eth = window.ethereum;
     if (!eth) {
