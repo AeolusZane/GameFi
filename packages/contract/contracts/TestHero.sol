@@ -1,10 +1,13 @@
 // // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.19;
+pragma solidity =0.8.15;
 
 import "./Hero.sol";
 
 contract TestHero is Hero {
     uint random;
+    constructor(address _feeToSetter) Hero(_feeToSetter) {
+    }
+
     function generateRamdom() public view override returns (uint) {
         return random;
     }

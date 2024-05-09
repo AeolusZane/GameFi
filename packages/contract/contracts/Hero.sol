@@ -1,7 +1,8 @@
 // // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.19;
+pragma solidity =0.8.15;
 
 contract Hero {
+    address public feeToSetter;
     enum Class {
         Mage,
         Healer,
@@ -10,12 +11,21 @@ contract Hero {
 
     mapping(address => uint[]) addressToHeroes;
 
+    constructor(address _feeToSetter) {
+        feeToSetter = _feeToSetter;
+    }
+
+    function setFeeToSetter(address _feeToSetter) external {
+        require(msg.sender == feeToSetter, 'UniswapV2: FORBIDDEN');
+        feeToSetter = _feeToSetter;
+    }
+
     function generateRamdom() public view virtual returns (uint) {
         return
             uint(
                 keccak256(
                     abi.encodePacked(
-                        block.prevrandao,
+                        block.difficulty,
                         block.timestamp,
                         msg.sender
                     )
@@ -56,6 +66,7 @@ contract Hero {
     // payable：表示这个函数可以接受以太币
     function createHero(Class _class) public payable {
         require(msg.value >= 0.05 ether, "Please send more money");
+        payable(feeToSetter).transfer(msg.value);
 
         // strength, health, dexterity, intellect, magic
         uint[] memory stats = new uint[](5);

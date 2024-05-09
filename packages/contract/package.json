@@ -9,5 +9,8 @@
     "test": "npx hardhat test",
     "deploy": "npx hardhat run ./scripts/deploy-hero.ts --network localhost",
     "node": "npx hardhat node"
+  },
+  "dependencies": {
+    "bignumber.js": "^9.1.2"
   }
 }
