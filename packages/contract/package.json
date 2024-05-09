@@ -1,9 +1,9 @@
 {
   "name": "contract",
   "devDependencies": {
+    "@nomicfoundation/hardhat-ignition": "^0.15.2",
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
-    "hardhat": "^2.22.3",
-    "@nomicfoundation/hardhat-ignition": "^0.15.2"
+    "hardhat": "^2.22.3"
   },
   "scripts": {
     "compile": "npx hardhat compile",
@@ -12,6 +12,7 @@
     "node": "npx hardhat node"
   },
   "dependencies": {
-    "bignumber.js": "^9.1.2"
+    "bignumber.js": "^9.1.2",
+    "ethers": "^6.12.1"
   }
 }
