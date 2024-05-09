@@ -5,32 +5,27 @@ import { expect } from "chai";
 import { ethers } from "hardhat";
 import hre from "hardhat";
 import BigNumber from "bignumber.js";
-
-const TEST_ADDRESSES: [string, string] = [
-    '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
-    '0x70997970C51812dc3A010C7d01b50e0d17dc79C8'
-]
-async function getBalance(address: string): Promise<bigint> {
-    return await hre.network.provider.request({
-        method: "eth_getBalance",
-        params: [address],
-    }) as bigint;
+async function getBalance(address: string) {
+    return await ethers.provider.getBalance(address);
 }
 describe("HeroTest", function () {
+    const TEST_ADDRESSES: string[] = [];
+    let hero: Awaited<ReturnType<typeof createHero>>;
+
     // We define a fixture to reuse the same setup in every test.
     // We use loadFixture to run this setup once, snapshot that state,
     // and reset Hardhat Network to that snapshot in every test.
     async function createHero() {
-        const Hero = await hre.ethers.getContractFactory("TestHero");
+        const [owner, otherAccount] = await ethers.getSigners();
+        TEST_ADDRESSES.push(owner.address);
+        TEST_ADDRESSES.push(otherAccount.address);
+        const Hero = await ethers.getContractFactory("TestHero");
         // 构造函数传参
-        const hero = await Hero.deploy(TEST_ADDRESSES[0]);
-
+        const hero = await Hero.deploy(owner);
         return hero;
     }
 
-    let hero: Awaited<ReturnType<typeof createHero>>;
-
-    before(async () => {
+    beforeEach(async () => {
         hero = await loadFixture(createHero);
     })
     it("should fail at creating hero case of payment", async function () {
@@ -53,7 +48,6 @@ describe("HeroTest", function () {
 
 
     it("should create only one hero", async function () {
-        const hero = await createHero();
         await hero.createHero(0, {
             value: ethers.parseEther("0.05")
         });
@@ -62,8 +56,6 @@ describe("HeroTest", function () {
     });
 
     it("hero attributes value should be random right", async function () {
-        const hero = await createHero();
-
         await hero.setRandom(69);
         await hero.createHero(0, {
             value: ethers.parseEther("0.05")
@@ -84,7 +76,6 @@ describe("HeroTest", function () {
 
 
     it("should create three hero", async function () {
-        const hero = await createHero();
         await hero.createHero(0, {
             value: ethers.parseEther("0.05")
         });
@@ -99,19 +90,16 @@ describe("HeroTest", function () {
     });
 
     it("should be constructor feeToSetter address", async function () {
-        const hero = await createHero();
         // 获取合约部署者地址;
         expect(await hero.feeToSetter()).to.equal(TEST_ADDRESSES[0]);
     })
 
     it("should be new feeToSetter address", async function () {
-        const hero = await createHero();
         await hero.setFeeToSetter(TEST_ADDRESSES[1]);
         expect(await hero.feeToSetter()).to.equal(TEST_ADDRESSES[1]);
     })
 
     it("should send money to feeToSetter", async function () {
-        const hero = await createHero();
         const preBalance = await getBalance(TEST_ADDRESSES[1]);
         await hero.setFeeToSetter(TEST_ADDRESSES[1]);
         await hero.createHero(0, { value: ethers.parseEther("0.05") });
@@ -120,6 +108,5 @@ describe("HeroTest", function () {
         const actual = new BigNumber(addValue.toString()).toPrecision(5);
         const target = new BigNumber(ethers.parseEther("0.05").toString()).toPrecision(5);
         expect(actual).to.equal(target);
-
     });
 })

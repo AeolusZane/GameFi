@@ -1,10 +1,10 @@
 import {
     loadFixture,
 } from "@nomicfoundation/hardhat-toolbox/network-helpers";
-import hre from "hardhat";
+import { ethers } from "hardhat";
 const FOUNDER_ADDRESS = '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266';
 async function deployHello() {
-    const Hero = await hre.ethers.getContractFactory("Hero");
+    const Hero = await ethers.getContractFactory("Hero");
     const hero = await Hero.deploy(FOUNDER_ADDRESS);
 
     return hero;
