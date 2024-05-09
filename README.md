@@ -81,7 +81,7 @@ mobile [ToDo]
 - 连接metamask
 - 切换链
 - 选择账号
-- 往metamask添加新网络
+- 往metamask添加新网络：EIP-3085
 
 
 1.web端
