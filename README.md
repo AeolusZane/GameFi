@@ -85,4 +85,6 @@ mobile [ToDo]
 - 添加创建英雄付款到创始人账号合约功能
 - 添加转账合约单测
 - update package dependencies, fix type errors
+- 前台用web3-react替换了部分之前用web3.js链接钱包的模块
+- need work:初始时链接钱包会出现没有安装metaMask的报错，可能由于页面资源没有初始化完成
 
