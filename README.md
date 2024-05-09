@@ -78,3 +78,11 @@ mobile [ToDo]
 
 1.web端
 2.移动端 ToDo
+
+## Log
+2024/5/9
+
+- 添加创建英雄付款到创始人账号合约功能
+- 添加转账合约单测
+- update package dependencies, fix type errors
+
