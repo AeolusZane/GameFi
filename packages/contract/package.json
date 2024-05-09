@@ -2,12 +2,13 @@
   "name": "contract",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
-    "hardhat": "^2.22.3"
+    "hardhat": "^2.22.3",
+    "@nomicfoundation/hardhat-ignition": "^0.15.2"
   },
   "scripts": {
     "compile": "npx hardhat compile",
     "test": "npx hardhat test",
-    "deploy": "npx hardhat run ./scripts/deploy-hero.ts --network localhost",
+    "ignition": "npx hardhat ignition deploy ignition/modules/Hero.ts --network localhost",
     "node": "npx hardhat node"
   },
   "dependencies": {

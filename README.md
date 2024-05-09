@@ -1,4 +1,4 @@
-# A GameFi Project
+# A NFT Project
 Tags: `hardhat` `ethers.js` `solidity` `typescript` `react` `react-native` `web3.js`
 
 ## deploy
@@ -6,7 +6,7 @@ Tags: `hardhat` `ethers.js` `solidity` `typescript` `react` `react-native` `web3
 - `pnpm install`
 - `pnpm run node` 部署私链
 - `pnpm run compile` 编译合约
-- `pnpm run deploy` 部署合约
+- `pnpm run ignition` 部署合约
 - `pnpm run web` 启动web前台
 
 - `pnpm run test:c` 合约单元测试
@@ -14,10 +14,13 @@ Tags: `hardhat` `ethers.js` `solidity` `typescript` `react` `react-native` `web3
 以下是开发过程部分
 
 ## 项目架构
-结构使用monorepo，合约和前台部分分离，web和移动端分离
-合约 ✅
-web In Progress
-mobile ToDo
+monorepo，合约和前台部分分离，web和移动端分离
+
+- [x] 合约
+
+web [In Progress]
+
+mobile [ToDo]
 
 ## 合约部分
 
@@ -57,7 +60,7 @@ mobile ToDo
 1.本地创建链
 新开一个控制台，执行`npx hardhat node`，会创建一个有10个账号地址的私链，初始会有10000ETH的金币。每次重新创建这个地址都相同，部署后，小狐狸钱包可以连接到部署的本地链上。用提供的私链地址在钱包里创建一个新的账号，。
 2.部署合约
-`npx hardhat run ./scripts/deploy-hero.ts --network localhost` or `npm run deploy`，可以在链控制台上看到新部署的合约。
+`npx hardhat ignition deploy ignition/modules/Hero.ts --network localhost` or `npm run ignition`，可以在链控制台上看到新部署的合约，再次部署先删掉ignition中的deployments文件
 
 ## 前台交互部分
 
@@ -65,7 +68,7 @@ mobile ToDo
 `cd web-ui`
 `pnpm install`
 
-## 功能
+### 功能
 - 购买英雄
 - 查看英雄
 - 查看英雄属性排名
