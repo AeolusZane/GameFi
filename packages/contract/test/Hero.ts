@@ -3,25 +3,28 @@ import {
 } from "@nomicfoundation/hardhat-toolbox/network-helpers";
 import { expect } from "chai";
 import { ethers } from "hardhat";
-import hre from "hardhat";
 import BigNumber from "bignumber.js";
+import { HardhatEthersSigner } from "@nomicfoundation/hardhat-ethers/signers";
 async function getBalance(address: string) {
     return await ethers.provider.getBalance(address);
 }
 describe("HeroTest", function () {
-    const TEST_ADDRESSES: string[] = [];
+    let OWNER: HardhatEthersSigner;
+    let OTHER: HardhatEthersSigner;
+    const TEST_ADDRESSES: string[] = [
+        '0x1000000000000000000000000000000000000000',
+        '0x2000000000000000000000000000000000000000'
+    ];
     let hero: Awaited<ReturnType<typeof createHero>>;
 
     // We define a fixture to reuse the same setup in every test.
     // We use loadFixture to run this setup once, snapshot that state,
     // and reset Hardhat Network to that snapshot in every test.
     async function createHero() {
-        const [owner, otherAccount] = await ethers.getSigners();
-        TEST_ADDRESSES.push(owner.address);
-        TEST_ADDRESSES.push(otherAccount.address);
+        [OWNER, OTHER] = (await ethers.getSigners());
         const Hero = await ethers.getContractFactory("TestHero");
         // 构造函数传参
-        const hero = await Hero.deploy(owner);
+        const hero = await Hero.deploy(OWNER.address);
         return hero;
     }
 
@@ -73,8 +76,6 @@ describe("HeroTest", function () {
         expect(await hero.getDex(h)).to.deep.equal(14n)
     });
 
-
-
     it("should create three hero", async function () {
         await hero.createHero(0, {
             value: ethers.parseEther("0.05")
@@ -91,19 +92,19 @@ describe("HeroTest", function () {
 
     it("should be constructor feeToSetter address", async function () {
         // 获取合约部署者地址;
-        expect(await hero.feeToSetter()).to.equal(TEST_ADDRESSES[0]);
+        expect(await hero.feeToSetter()).to.equal(OWNER.address);
     })
 
     it("should be new feeToSetter address", async function () {
-        await hero.setFeeToSetter(TEST_ADDRESSES[1]);
-        expect(await hero.feeToSetter()).to.equal(TEST_ADDRESSES[1]);
+        await hero.setFeeToSetter(TEST_ADDRESSES[0]);
+        expect(await hero.feeToSetter()).to.equal(TEST_ADDRESSES[0]);
     })
 
     it("should send money to feeToSetter", async function () {
-        const preBalance = await getBalance(TEST_ADDRESSES[1]);
-        await hero.setFeeToSetter(TEST_ADDRESSES[1]);
+        const preBalance = await getBalance(TEST_ADDRESSES[0]);
+        await hero.setFeeToSetter(TEST_ADDRESSES[0]);
         await hero.createHero(0, { value: ethers.parseEther("0.05") });
-        const laterBalance = await getBalance(TEST_ADDRESSES[1]);
+        const laterBalance = await getBalance(TEST_ADDRESSES[0]);
         const addValue = laterBalance - preBalance;
         const actual = new BigNumber(addValue.toString()).toPrecision(5);
         const target = new BigNumber(ethers.parseEther("0.05").toString()).toPrecision(5);
