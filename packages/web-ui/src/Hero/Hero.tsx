@@ -1,32 +1,16 @@
 import '../App.css'
-import { web3 } from '../core/init';
-import Hero from '../../../contract/artifacts/contracts/Hero.sol/Hero.json'
-import { getHeroAttr } from '../util/hero'
-import { useEffect, useState } from 'react';
 import { useActivation } from '../components/Web3Provider'
 import { useCurrencyBalance } from '../hook/useCurrencyBalance'
+import { useQueryHeroes } from '../hook/useQueryHeroes'
+import type { HeroDetailType } from '../hook/useQueryHeroes'
+import { useEffect } from 'react';
+import { useBuyHero } from '../hook/useBuyHero';
 import './hero.css'
 
-const CONTRACT_ADDRESS = '0x5fbdb2315678afecb367f032d93f642f64180aa3'
-const enum HeroName {
-    Mage = "法师",
-    Healer = "治疗师",
-    Barbarian = "野蛮人",
-}
-
-type HeroType = {
-    class?: HeroName,
-    magic: number,
-    strength: number,
-    intellect: number,
-    dex: number,
-    health: number,
-}
-
-function HeroCard(props: HeroType) {
+function HeroCard(props: HeroDetailType) {
     return (
         <div className='hero-info'>
-            <p>职业: {props.class}</p>
+            <p>职业: {props.name}</p>
             <p>魔法: {props.magic.toString()}</p>
             <p>力量: {props.strength.toString()}</p>
             <p>智力: {props.intellect.toString()}</p>
@@ -37,39 +21,14 @@ function HeroCard(props: HeroType) {
 }
 
 function HeroPage() {
-    const [heroes, setHeroes] = useState<HeroType[]>([]);
     const { tryActivate } = useActivation();
     const { account, balance } = useCurrencyBalance();
+    const { queryHeroes, heroes } = useQueryHeroes();
+    const { buyHero, transactionHash } = useBuyHero();
 
     useEffect(() => {
-        checkHeroes()
-    }, [heroes.length])
-
-    async function checkHeroes() {
-        const contract = new web3.eth.Contract(Hero.abi,
-            CONTRACT_ADDRESS
-        )
-        // 传参数
-        const heroes = await contract.methods.getHeroes().call({
-            from: (await web3.eth.getAccounts())[0],
-        });
-        let heroList = []
-        Promise.all(heroes.map((h: any) => getHeroAttr(contract, h))).then((attr: HeroType[]) => {
-            heroList = attr;
-            setHeroes([...heroList])
-        })
-    }
-
-    async function purchaseHero() {
-        const contract = new web3.eth.Contract(Hero.abi,
-            CONTRACT_ADDRESS
-        )
-        // 传参数
-        contract.methods.createHero(0).send({
-            from: (await web3.eth.getAccounts())[0],
-            value: web3.utils.toWei('0.06', 'ether'),
-        })
-    }
+        queryHeroes()
+    }, [account, transactionHash])
 
     return (
         <>
@@ -80,6 +39,9 @@ function HeroPage() {
                 <div>
                     balance: {balance} ETH
                 </div>
+                {transactionHash ? <div>
+                    transaction succeed!! transaction hash~: {transactionHash}
+                </div> : null}
             </div>
             <div style={{ display: 'flex', gap: 10 }} className='hero-container'>
                 {heroes.map((h, i) => {
@@ -87,15 +49,15 @@ function HeroPage() {
                 })}
             </div>
             <div className="card">
-                <button onClick={() => {
-                    tryActivate()
-                }}>
+                <button onClick={tryActivate}>
                     连接钱包
                 </button>
-                <button onClick={purchaseHero}>
+                <button onClick={() => {
+                    buyHero();
+                }}>
                     购买英雄
                 </button>
-                <button onClick={checkHeroes}>
+                <button onClick={queryHeroes}>
                     查看英雄
                 </button>
             </div>

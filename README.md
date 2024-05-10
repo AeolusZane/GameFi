@@ -40,6 +40,7 @@ mobile [ToDo]
     多个英雄保存在自己的账号地址里
 - 英雄命名/改名 TODO
 - 属性综合排名 TODO
+
 ### 合约测试 ✅
 `./test`文件夹下新建Hero.ts对应Hero.sol，创建一个TestHero.sol的合约来设置随机数
 
@@ -81,10 +82,16 @@ mobile [ToDo]
 
 ## Log
 2024/5/9
-
 - 添加创建英雄付款到创始人账号合约功能
 - 添加转账合约单测
 - update package dependencies, fix type errors
 - 前台用web3-react替换了部分之前用web3.js链接钱包的模块
-- todo：继续替换支付等交互模块web3-react->web3.js
+- todo：继续替换支付等交互模块web3-react->web3.js✅
+
+2024/5/10
+- 用@ethersproject和web3react重构合约交互逻辑
+- 重写前端购买英雄模块
+- 重写前端获取英雄模块
+- todo：切换MetaMask链
+- todo：初次进入页面链接钱包（缓存到浏览器）
 
