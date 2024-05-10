@@ -103,4 +103,5 @@ mobile [ToDo]
 - todo：切换MetaMask链
 - todo：初次进入页面链接钱包（缓存到浏览器）
 - todo：使用事件监听重写balance模块（现在交易后balance不会变）
+- todo：重写切换select样式
 

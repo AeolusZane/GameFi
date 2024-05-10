@@ -2,9 +2,17 @@ import { ReactNode, useEffect } from "react";
 import { Web3ReactHooks, Web3ReactProvider, initializeConnector, useWeb3React } from '@web3-react/core'
 import { MetaMask } from '@web3-react/metamask'
 import type { Connector } from '@web3-react/types'
+
+const enum ConnectionType {
+    INJECTED = 'injected',
+    LOCAL_TEST = 'local_test',
+}
+
+
 interface Connection {
     connector: Connector
     hooks: Web3ReactHooks
+    type: ConnectionType
 }
 const onError = (error: Error) => {
     console.error(error, '🐷')
@@ -16,7 +24,7 @@ export const deprecatedInjectedConnection: Connection = {
     // getProviderInfo: (isDarkMode: boolean) => getDeprecatedInjection(isDarkMode) ?? { name: t`Browser Wallet` },
     connector: web3Injected,
     hooks: web3InjectedHooks,
-    // type: ConnectionType.INJECTED,
+    type: ConnectionType.INJECTED,
     // shouldDisplay: () => getIsMetaMaskWallet() || getShouldAdvertiseMetaMask() || getIsGenericInjector(),
     // // If on non-injected, non-mobile browser, prompt user to install Metamask
     // overrideActivate: () => {

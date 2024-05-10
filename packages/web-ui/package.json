@@ -12,9 +12,15 @@
   "dependencies": {
     "@ethersproject/bignumber": "^5.7.0",
     "@ethersproject/contracts": "^5.7.0",
+    "@tamagui/config": "^1.97.1",
+    "@tamagui/core": "^1.97.1",
+    "@tamagui/lucide-icons": "^1.97.1",
+    "@tamagui/vite-plugin": "^1.97.1",
     "@web3-react/types": "^8.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-native-svg": "^15.2.0",
+    "tamagui": "^1.97.1",
     "web3": "^4.8.0"
   },
   "devDependencies": {

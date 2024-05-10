@@ -1,8 +1,13 @@
 import Hero from './Hero/Hero'
-
+import './App.css'
+import './index.css'
+import { SelectDemo } from './components/Select'
 function App() {
   return (
-    <Hero />
+    <div>
+      <Hero />
+      <SelectDemo />
+    </div>
   )
 }
 

@@ -1,13 +1,18 @@
+import '@tamagui/core/reset.css'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
-import './index.css'
 import Web3Provider from './components/Web3Provider.tsx'
+import { TamaguiProvider, createTamagui } from '@tamagui/core'
+import { config } from '@tamagui/config'
+const tamaguiConfig = createTamagui(config)
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Web3Provider>
-      <App />
+      <TamaguiProvider config={tamaguiConfig}>
+        <App />
+      </TamaguiProvider>
     </Web3Provider>
   </React.StrictMode>,
 )

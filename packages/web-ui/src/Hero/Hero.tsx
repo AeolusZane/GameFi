@@ -1,10 +1,10 @@
-import '../App.css'
 import { useActivation } from '../components/Web3Provider'
 import { useCurrencyBalance } from '../hook/useCurrencyBalance'
 import { useQueryHeroes } from '../hook/useQueryHeroes'
 import type { HeroDetailType } from '../hook/useQueryHeroes'
 import { useEffect } from 'react';
 import { useBuyHero } from '../hook/useBuyHero';
+import { useWeb3React } from '@web3-react/core'
 import './hero.css'
 
 function HeroCard(props: HeroDetailType) {
@@ -25,10 +25,15 @@ function HeroPage() {
     const { account, balance } = useCurrencyBalance();
     const { queryHeroes, heroes } = useQueryHeroes();
     const { buyHero, transactionHash } = useBuyHero();
+    const { connector } = useWeb3React();
 
     useEffect(() => {
         queryHeroes()
-    }, [account, transactionHash])
+    }, [account, transactionHash, balance])
+
+    const switchChain = (chainId: number) => {
+        connector.activate({ chainId })
+    }
 
     return (
         <>
@@ -43,7 +48,7 @@ function HeroPage() {
                     transaction succeed!! transaction hash~: {transactionHash}
                 </div> : null}
             </div>
-            <div style={{ display: 'flex', gap: 10 }} className='hero-container'>
+            <div className='hero-container'>
                 {heroes.map((h, i) => {
                     return <HeroCard key={i} {...h} />
                 })}
@@ -60,7 +65,18 @@ function HeroPage() {
                 <button onClick={queryHeroes}>
                     查看英雄
                 </button>
-            </div>
+
+                <button onClick={() => {
+                    switchChain(1)
+                }}>
+                    切换到主网
+                </button>
+                <button onClick={() => {
+                    switchChain(1337)
+                }}>
+                    切换到测试网(1337)
+                </button>
+            </div >
         </>
     )
 }
