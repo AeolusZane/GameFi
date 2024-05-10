@@ -1,11 +1,8 @@
-import { Check, ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
-import { useMemo, useState } from 'react'
+import { Check, ChevronDown } from '@tamagui/lucide-icons'
+import { useState } from 'react'
+import type { SelectProps } from 'tamagui'
 
-import type { FontSizeTokens, SelectProps } from 'tamagui'
-
-import { Adapt, Label, Select, Sheet, XStack, YStack, getFontSize } from 'tamagui'
-
-import { LinearGradient } from 'tamagui/linear-gradient'
+import { Select, XStack, YStack } from 'tamagui'
 
 export function SelectDemo() {
 
@@ -64,18 +61,7 @@ export function SelectDemoItem(props: SelectProps) {
                     </Select.Group>
                 </Select.Viewport>
 
-                <Select.ScrollDownButton >
-                    <YStack>
-                        <ChevronDown />
-                    </YStack>
-                    <LinearGradient
-                        start={[0, 0]}
-                        end={[0, 1]}
-                        fullscreen
-                        colors={['transparent', '$background']}
-                        borderRadius="$4"
-                    />
-                </Select.ScrollDownButton>
+                <Select.ScrollDownButton />
             </Select.Content>
         </Select>)
 
