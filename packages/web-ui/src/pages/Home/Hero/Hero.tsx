@@ -30,7 +30,7 @@ function HeroPage() {
 
     useEffect(() => {
         queryHeroes() // todo need to use emit event to update
-    }, [account, transactionHash, balance, chainId])
+    }, [account, transactionHash, chainId])
 
     return (
         <>
