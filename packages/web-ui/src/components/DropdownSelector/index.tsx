@@ -32,6 +32,7 @@ export const InternalMenuItem = styled.div<{ disabled?: boolean }>`
     `}
 `
 const MenuFlyout = styled(Column) <{ menuFlyoutCss?: string }>`
+  right: 0;
   min-width: 150px;
   overflow: auto;
   background-color: ${({ theme }) => theme.surface1};

@@ -9,7 +9,7 @@ import { useSelectChain } from "@hook/useSelectChain"
 const Container = styled.div`
     display: flex;
     justify-content: flex-end;
-    margin-right: 20px;
+    margin-right: 10px;
 `
 const DropdownWrapper = styled.div``
 

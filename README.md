@@ -88,20 +88,28 @@ mobile [ToDo]
 1.web端
 2.移动端 ToDo
 
+## TodoList
+- todo：替换支付等交互模块web3-react->web3.js✅
+- todo：重写切换select组件✅
+- todo：切换MetaMask链（切换网络✅
+- todo：初次进入页面链接钱包（缓存到浏览器）
+- todo(bug)：使用事件监听重写balance模块（现在交易后balance不会变，英雄也不会变），切换钱包后也不会变，要改成购买后用emit事件更新
+- todo：英雄可以转让
+- todo：alchemy上部署链
+
+
 ## Log
 2024/5/9
 - 添加创建英雄付款到创始人账号合约功能
 - 添加转账合约单测
 - update package dependencies, fix type errors
 - 前台用web3-react替换了部分之前用web3.js链接钱包的模块
-- todo：继续替换支付等交互模块web3-react->web3.js✅
 
 2024/5/10
 - 用@ethersproject和web3react重构合约交互逻辑
 - 重写前端购买英雄模块
 - 重写前端获取英雄模块
-- todo：重写切换select组件✅
-- todo：切换MetaMask链（切换网络✅
-- todo：初次进入页面链接钱包（缓存到浏览器）
-- todo(bug)：使用事件监听重写balance模块（现在交易后balance不会变，英雄也不会变），切换钱包后也不会变，要改成购买后用emit事件更新
 
+2024/5/11
+- 重写selector和button组件
+- 使用styled-components，配置全局样式（theme的darkMode还有bug）
