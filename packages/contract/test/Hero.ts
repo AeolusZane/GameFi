@@ -41,7 +41,7 @@ describe("HeroTest", function () {
             e = _e;
         }
 
-        expect(e.message.includes("Please send more money")).to.equal(true);
+        expect(e.message.includes("Please send more money, minimum 0.05 ether")).to.equal(true);
     });
 
     it("should get a zero hero array", async function () {

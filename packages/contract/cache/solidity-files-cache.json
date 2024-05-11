@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/zhangjingzheng/Desktop/web3/gamefi/packages/contract/contracts/Hero.sol": {
-      "lastModificationDate": 1715230453757,
-      "contentHash": "d2a234448b15a9028c5f366b2463418c",
+      "lastModificationDate": 1715414690460,
+      "contentHash": "ab0c918e33097e476eed67986f537936",
       "sourceName": "contracts/Hero.sol",
       "solcConfig": {
         "version": "0.8.15",
