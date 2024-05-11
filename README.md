@@ -39,7 +39,7 @@ mobile [ToDo]
 - 一个玩家可以创建多个英雄 ✅
     多个英雄保存在自己的账号地址里
 - 英雄命名/改名 TODO
-- 英雄交易 TODO
+- 英雄转移【不付费】 ✅
 - 属性综合排名 TODO
 
 ### 合约测试 ✅
@@ -55,6 +55,7 @@ mobile [ToDo]
 - 一个玩家可以拥有多个英雄。✅
 - 购买英雄后转账到创建者账号。✅
 - 创建者可以修改接受转账地址。✅
+- 可以将英雄转移给别人✅
 
 ### 合约编译，部署
 - 编译合约
@@ -77,6 +78,7 @@ mobile [ToDo]
 - 查看英雄属性排名
 - 英雄改名
 - 英雄属性【五边形状态】
+- 英雄转移【交换】
 
 ### 前台合约交互
 - 连接metamask
@@ -107,7 +109,7 @@ this is a MetaMask Error also. refresh the nonce data in the setting of the Meta
 - todo：初次进入页面链接钱包（缓存到浏览器）✅
 - todo：处理主题配置没生效✅
 - todo(bug)：使用事件监听重写balance模块（现在交易后balance不会变，英雄也不会变），切换钱包后也不会变，要改成购买后用emit事件更新
-- todo：英雄可以转让
+- todo：英雄可以转让✅
 - todo：alchemy上部署链
 
 
@@ -131,3 +133,5 @@ this is a MetaMask Error also. refresh the nonce data in the setting of the Meta
 - 初次进入页面链接钱包
 - 解决切换链后信息不同步问题
 - 解决主题显示不生效问题
+- 合约：英雄转移
+- 合约：费用计算表格
