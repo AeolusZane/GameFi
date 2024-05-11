@@ -6,7 +6,8 @@ import { useIsDarkMode } from '@theme/components/ThemeToggle'
 
 // import { navDimensions } from '../nft/css/sprinkles.css'
 import {
-  // darkTheme, lightTheme,
+  darkTheme,
+  lightTheme,
   ThemeColors
 } from './colors'
 // import { darkDeprecatedTheme, lightDeprecatedTheme } from './deprecatedColors'
@@ -90,7 +91,7 @@ function getSettings(darkMode: boolean) {
     shadow1: darkMode ? '#000' : '#2F80ED',
 
     // media queries
-    // deprecated_mediaWidth: deprecated_mediaWidthTemplates,
+    deprecated_mediaWidth: deprecated_mediaWidthTemplates,
 
     // navHeight: navDimensions.height,
     // navVerticalPad: navDimensions.verticalPad,
@@ -114,11 +115,18 @@ function getSettings(darkMode: boolean) {
 
 // eslint-disable-next-line import/no-unused-modules -- used in styled.d.ts
 export function getTheme(darkMode: boolean, overriddenColors?: Partial<ThemeColors>) {
-  // const [colors, deprecatedColors] = darkMode ? [darkTheme, darkDeprecatedTheme] : [lightTheme, lightDeprecatedTheme]
-  // const colorsWithOverrides = applyOverriddenColors(colors, overriddenColors)
+  const [colors,
+    //  deprecatedColors
+  ] = darkMode ? [darkTheme,
+    // darkDeprecatedTheme
+  ] : [
+      lightTheme,
+      // lightDeprecatedTheme
+    ]
+  const colorsWithOverrides = applyOverriddenColors(colors, overriddenColors)
 
   return {
-    // ...colorsWithOverrides,
+    ...colorsWithOverrides,
     // ...deprecatedColors,
     ...getSettings(darkMode)
   }
