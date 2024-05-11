@@ -67,7 +67,6 @@ mobile [ToDo]
 `npx hardhat ignition deploy ignition/modules/Hero.ts --network localhost` or `npm run ignition`，可以在链控制台上看到新部署的合约，再次部署先删掉ignition中的deployments文件
 
 ## 前台交互部分
-
 前台子项目
 `cd web-ui`
 `pnpm install`
@@ -91,7 +90,6 @@ mobile [ToDo]
 2.移动端 ToDo
 
 ## Developing Recording
----
 
 ### Error Type
 Received invalid block tag **. Latest block number is **
@@ -114,7 +112,6 @@ this is a MetaMask Error also. refresh the nonce data in the setting of the Meta
 
 
 ## Log
----
 2024/5/9
 - 添加创建英雄付款到创始人账号合约功能
 - 添加转账合约单测
