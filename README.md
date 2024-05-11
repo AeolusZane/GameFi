@@ -1,5 +1,5 @@
-# A NFT Project
-Tags: `hardhat` `web3-react` `ethers.js` `solidity` `typescript` `react` `react-native` `web3.js`
+# A NFT/GameFi Project
+Tags: `hardhat` `web3-react` `ethers.js` `solidity` `alchemy` `typescript` `react` `react-native` `web3.js`
 
 ## deploy
 
