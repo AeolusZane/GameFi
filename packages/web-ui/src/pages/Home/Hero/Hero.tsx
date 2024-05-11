@@ -4,6 +4,7 @@ import { useQueryHeroes } from '@hook/useQueryHeroes'
 import type { HeroDetailType } from '@hook/useQueryHeroes'
 import { useEffect } from 'react';
 import { useBuyHero } from '@hook/useBuyHero';
+import { useWeb3React } from '@web3-react/core'
 import Button from '@components/Button';
 import './hero.css'
 
@@ -25,10 +26,11 @@ function HeroPage() {
     const { account, balance } = useCurrencyBalance();
     const { queryHeroes, heroes } = useQueryHeroes();
     const { buyHero, transactionHash } = useBuyHero();
+    const { chainId } = useWeb3React()
 
     useEffect(() => {
         queryHeroes() // todo need to use emit event to update
-    }, [account, transactionHash, balance])
+    }, [account, transactionHash, balance, chainId])
 
     return (
         <>

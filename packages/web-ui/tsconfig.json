@@ -34,6 +34,9 @@
       "@constants/*": [
         "./src/constants/*"
       ],
+      "@log": [
+        "./src/log/index.ts"
+      ],
     }
   },
   "include": [

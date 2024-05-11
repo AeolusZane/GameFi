@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import { Web3ReactHooks, Web3ReactProvider, initializeConnector, useWeb3React } from '@web3-react/core'
 import { MetaMask } from '@web3-react/metamask'
 import type { Connector } from '@web3-react/types'
@@ -14,7 +14,7 @@ interface Connection {
     type: ConnectionType
 }
 const onError = (error: Error) => {
-    console.error(error, '🐷')
+    console.log(error, '🐷')
 }
 
 const [web3Injected, web3InjectedHooks] = initializeConnector<MetaMask>((actions) => new MetaMask({ actions, onError }))
@@ -40,6 +40,17 @@ const connections = [
 
 export function useActivation() {
     const { connector } = useWeb3React();
+
+    useEffect(() => {
+        /**
+         * there would be an Error "MetaMask not installed..."
+         * the reason is when you first load into the page, the ethereum hasn't been injected into the window env yet
+         * so we need to wait for the ethereum to be injected in the next event loop
+         */
+        setTimeout(() => {
+            tryActivate()
+        }, 0)
+    }, [])
 
     const tryActivate = async () => {
         try {

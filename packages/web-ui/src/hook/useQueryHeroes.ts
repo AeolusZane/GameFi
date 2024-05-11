@@ -4,6 +4,7 @@ import { BigNumber } from '@ethersproject/bignumber'
 import Hero from '../../../contract/artifacts/contracts/Hero.sol/Hero.json'
 import { useState } from 'react'
 import { CONTRACT_ADDRESS } from '../constants/contract';
+import log, { LogLevel } from '@log';
 
 export const enum HeroName {
   Mage = "法师",
@@ -46,14 +47,18 @@ export function useQueryHeroes() {
     if (!provider) {
       return;
     }
-    const contract = new Contract(CONTRACT_ADDRESS, Hero.abi, provider);
-    const res = await contract.functions.getHeroes({
-      from: account
-    });
-    const heroes = res[0].map((B: BigNumber) => B.toBigInt());
-    const heroDetails = await Promise.all(heroes.map((h: any) => getAttr(h, contract)));
-
-    setHeroes(heroDetails);
+    try {
+      const contract = new Contract(CONTRACT_ADDRESS, Hero.abi, provider);
+      const res = await contract.functions.getHeroes({
+        from: account
+      });
+      const heroes = res[0].map((B: BigNumber) => B.toBigInt());
+      const heroDetails = await Promise.all(heroes.map((h: any) => getAttr(h, contract)));
+      setHeroes(heroDetails);
+    } catch (e) {
+      log(`you may switch to a chain doesn't have the contract deployed`, LogLevel.WARN)
+      setHeroes([]);
+    }
   }
 
   const getAttr = async (h: any, contract: Contract) => {
