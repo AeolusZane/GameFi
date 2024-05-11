@@ -88,7 +88,19 @@ mobile [ToDo]
 1.web端
 2.移动端 ToDo
 
-## TodoList
+## Developing Recording
+---
+
+### Error Type
+Received invalid block tag **. Latest block number is **
+
+this is a MetaMask Error, when you redeploy a contract in the local. disconnect the wallet to the front end project, change the chain, refresh the page. reload the vite project. try any thing you can to refresh the environment of your wallet, like reboot your computer in early age when your system meet some error ;).
+
+nonce too high...
+
+this is a MetaMask Error also. refresh the nonce data in the setting of the MetaMask.
+
+### TodoList
 - todo：替换支付等交互模块web3-react->web3.js✅
 - todo：重写切换select组件✅
 - todo：切换MetaMask链（切换网络）✅
@@ -100,6 +112,7 @@ mobile [ToDo]
 
 
 ## Log
+---
 2024/5/9
 - 添加创建英雄付款到创始人账号合约功能
 - 添加转账合约单测
