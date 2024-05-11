@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import Web3 from 'web3';
 
 export function useCurrencyBalance() {
-    const { account, provider, chainId } = useWeb3React();
+    const { account, provider, chainId, isActive } = useWeb3React();
     const [balance, setBalance] = useState<string | null>('-');
     useEffect(() => {
         if (provider && account) {
@@ -17,7 +17,10 @@ export function useCurrencyBalance() {
                 provider.removeListener('block', getBalance)
             }
         }
-    }, [provider, chainId]);
+        if(!isActive){
+            setBalance('-')
+        }
+    }, [provider, chainId, isActive]);
 
     if (!account) {
         // console.log('No accounts found')

@@ -39,7 +39,7 @@ const connections = [
 ]
 
 export function useActivation() {
-    const { connector } = useWeb3React();
+    const { connector, isActive, isActivating } = useWeb3React();
 
     useEffect(() => {
         /**
@@ -59,7 +59,16 @@ export function useActivation() {
             console.error(e)
         }
     }
-    return { tryActivate }
+    const tryDeactivate = async () => {
+        try {
+            if (!connector) return
+            await connector.deactivate?.();
+            await connector.resetState?.();
+        } catch (e) {
+            console.error(e)
+        }
+    }
+    return { tryActivate, tryDeactivate, isActive, isActivating }
 }
 
 export default function Web3Provider({ children }: { children: ReactNode }) {

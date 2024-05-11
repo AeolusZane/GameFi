@@ -22,7 +22,7 @@ function HeroCard(props: HeroDetailType) {
 }
 
 function HeroPage() {
-    const { tryActivate } = useActivation();
+    const { tryActivate, tryDeactivate, isActive } = useActivation();
     const { account, balance } = useCurrencyBalance();
     const { queryHeroes, heroes } = useQueryHeroes();
     const { buyHero, transactionHash } = useBuyHero();
@@ -32,6 +32,13 @@ function HeroPage() {
         queryHeroes() // todo need to use emit event to update
     }, [account, transactionHash, chainId])
 
+    const toggleActivate = async () => {
+        if (isActive) {
+            await tryDeactivate()
+        } else {
+            await tryActivate()
+        }
+    }
     return (
         <>
             <div className="user-info">
@@ -51,8 +58,8 @@ function HeroPage() {
                 })}
             </div>
             <div className="card">
-                <Button onClick={tryActivate}>
-                    连接钱包
+                <Button onClick={toggleActivate}>
+                    {isActive ? '断开连接' : '连接钱包'}
                 </Button>
                 <Button onClick={buyHero}>
                     购买英雄

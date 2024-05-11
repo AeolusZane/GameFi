@@ -16,7 +16,7 @@ export function useBuyHero() {
         }
         const contract = new Contract(CONTRACT_ADDRESS, Hero.abi, provider?.getSigner());
         const res = await contract.functions.createHero(0, {
-            value: Web3.utils.toWei('0.05', 'ether')
+            value: Web3.utils.toWei('0.0012', 'ether')
         });
         await res.wait(); // 改成emit事件更合适
 

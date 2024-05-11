@@ -35,13 +35,13 @@ describe("HeroTest", function () {
         let e;
         try {
             await hero.createHero(0, {
-                value: ethers.parseEther("0.04999")
+                value: ethers.parseEther("0.00099")
             });
         } catch (_e: any) {
             e = _e;
         }
 
-        expect(e.message.includes("Please send more money, minimum 0.05 ether")).to.equal(true);
+        expect(e.message.includes("Please send more money, minimum 0.001 ether")).to.equal(true);
     });
 
     it("should get a zero hero array", async function () {

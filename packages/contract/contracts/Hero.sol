@@ -65,7 +65,7 @@ contract Hero {
 
     // payable：表示这个函数可以接受以太币
     function createHero(Class _class) public payable {
-        require(msg.value >= 0.05 ether, "Please send more money, minimum 0.05 ether");
+        require(msg.value >= 0.001 ether, "Please send more money, minimum 0.001 ether");
         payable(feeToSetter).transfer(msg.value);
 
         // strength, health, dexterity, intellect, magic
