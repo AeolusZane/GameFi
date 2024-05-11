@@ -9,6 +9,8 @@ contract Hero {
         Barbarian
     }
 
+    event TransferHero(address indexed from, address indexed to, uint hero);
+
     mapping(address => uint[]) addressToHeroes;
 
     constructor(address _feeToSetter) {
@@ -77,6 +79,8 @@ contract Hero {
         }
         heroes.pop();
         addressToHeroes[other].push(hero);
+
+        emit TransferHero(msg.sender, other, hero);
     }
 
     // payable：表示这个函数可以接受以太币

@@ -8,7 +8,8 @@ import { HardhatEthersSigner } from "@nomicfoundation/hardhat-ethers/signers";
 async function getBalance(address: string) {
     return await ethers.provider.getBalance(address);
 }
-describe.skip("HeroTest", function () {
+
+describe("HeroTest", function () {
     let OWNER: HardhatEthersSigner;
     let OTHER: HardhatEthersSigner;
     const TEST_ADDRESSES: string[] = [
@@ -121,7 +122,10 @@ describe.skip("HeroTest", function () {
             value: ethers.parseEther("0.001")
         });
         const heroes = await hero.getHeroes();
-        await hero.transferHero(heroes[0], OTHER.address);
+
+        await expect(hero.transferHero(heroes[0], OTHER.address))
+            .emit(hero, "TransferHero")
+            .withArgs(OWNER.address, OTHER.address, heroes[0]);
 
         const otherHeroes = await hero.connect(OTHER).getHeroes();
         const newHeroes = await hero.getHeroes();

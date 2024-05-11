@@ -8,6 +8,7 @@ import type {
   FunctionFragment,
   Result,
   Interface,
+  EventFragment,
   AddressLike,
   ContractRunner,
   ContractMethod,
@@ -17,6 +18,7 @@ import type {
   TypedContractEvent,
   TypedDeferredTopicFilter,
   TypedEventLog,
+  TypedLogDescription,
   TypedListener,
   TypedContractMethod,
 } from "./common";
@@ -37,6 +39,8 @@ export interface HeroInterface extends Interface {
       | "setFeeToSetter"
       | "transferHero"
   ): FunctionFragment;
+
+  getEvent(nameOrSignatureOrTopic: "TransferHero"): EventFragment;
 
   encodeFunctionData(
     functionFragment: "createHero",
@@ -117,6 +121,24 @@ export interface HeroInterface extends Interface {
     functionFragment: "transferHero",
     data: BytesLike
   ): Result;
+}
+
+export namespace TransferHeroEvent {
+  export type InputTuple = [
+    from: AddressLike,
+    to: AddressLike,
+    hero: BigNumberish
+  ];
+  export type OutputTuple = [from: string, to: string, hero: bigint];
+  export interface OutputObject {
+    from: string;
+    to: string;
+    hero: bigint;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
 }
 
 export interface Hero extends BaseContract {
@@ -239,5 +261,24 @@ export interface Hero extends BaseContract {
     "nonpayable"
   >;
 
-  filters: {};
+  getEvent(
+    key: "TransferHero"
+  ): TypedContractEvent<
+    TransferHeroEvent.InputTuple,
+    TransferHeroEvent.OutputTuple,
+    TransferHeroEvent.OutputObject
+  >;
+
+  filters: {
+    "TransferHero(address,address,uint256)": TypedContractEvent<
+      TransferHeroEvent.InputTuple,
+      TransferHeroEvent.OutputTuple,
+      TransferHeroEvent.OutputObject
+    >;
+    TransferHero: TypedContractEvent<
+      TransferHeroEvent.InputTuple,
+      TransferHeroEvent.OutputTuple,
+      TransferHeroEvent.OutputObject
+    >;
+  };
 }
