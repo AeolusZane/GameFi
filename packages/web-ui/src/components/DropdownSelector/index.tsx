@@ -1,7 +1,7 @@
 import Column from '@components/Column'
 import FilterButton from '@components/DropdownSelector/FilterButton'
 // import { MouseoverTooltip, TooltipSize } from 'components/Tooltip'
-// import { useOnClickOutside } from 'hooks/useOnClickOutside'
+import { useOnClickOutside } from '@hook/useOnClickOutside'
 import React, { useRef } from 'react'
 import { ChevronDown } from 'react-feather'
 import styled, { css } from 'styled-components'
@@ -132,7 +132,7 @@ export function DropdownSelector({
   menuFlyoutCss,
 }: DropdownSelectorProps) {
   const node = useRef<HTMLDivElement | null>(null)
-  // useOnClickOutside(node, isOpen ? toggleOpen : undefined)
+  useOnClickOutside(node, isOpen ? toggleOpen : undefined)
 
   return (
     <StyledMenu ref={node}>
