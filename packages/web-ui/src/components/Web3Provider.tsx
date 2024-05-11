@@ -1,11 +1,10 @@
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 import { Web3ReactHooks, Web3ReactProvider, initializeConnector, useWeb3React } from '@web3-react/core'
 import { MetaMask } from '@web3-react/metamask'
 import type { Connector } from '@web3-react/types'
 
 const enum ConnectionType {
     INJECTED = 'injected',
-    LOCAL_TEST = 'local_test',
 }
 
 

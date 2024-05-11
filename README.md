@@ -100,8 +100,8 @@ mobile [ToDo]
 - 用@ethersproject和web3react重构合约交互逻辑
 - 重写前端购买英雄模块
 - 重写前端获取英雄模块
-- todo：切换MetaMask链
+- todo：重写切换select组件✅
+- todo：切换MetaMask链（切换网络✅
 - todo：初次进入页面链接钱包（缓存到浏览器）
-- todo：使用事件监听重写balance模块（现在交易后balance不会变）
-- todo：重写切换select样式
+- todo(bug)：使用事件监听重写balance模块（现在交易后balance不会变，英雄也不会变），切换钱包后也不会变，要改成购买后用emit事件更新
 

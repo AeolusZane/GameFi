@@ -1,12 +1,9 @@
-import Hero from './Hero/Hero'
+import Home from './pages/Home'
 import './App.css'
-import './index.css'
-import { SelectDemo } from './components/Select'
 function App() {
   return (
     <div>
-      <Hero />
-      <SelectDemo />
+      <Home />
     </div>
   )
 }

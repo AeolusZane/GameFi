@@ -18,6 +18,7 @@ export function useBuyHero() {
         const res = await contract.functions.createHero(0, {
             value: Web3.utils.toWei('0.05', 'ether')
         });
+        await res.wait(); // 改成emit事件更合适
 
         setTransactionHash(res.hash);
     }

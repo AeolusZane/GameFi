@@ -1,10 +1,10 @@
-import { useActivation } from '../components/Web3Provider'
-import { useCurrencyBalance } from '../hook/useCurrencyBalance'
-import { useQueryHeroes } from '../hook/useQueryHeroes'
-import type { HeroDetailType } from '../hook/useQueryHeroes'
+import { useActivation } from '@components/Web3Provider'
+import { useCurrencyBalance } from '@hook/useCurrencyBalance'
+import { useQueryHeroes } from '@hook/useQueryHeroes'
+import type { HeroDetailType } from '@hook/useQueryHeroes'
 import { useEffect } from 'react';
-import { useBuyHero } from '../hook/useBuyHero';
-import { useWeb3React } from '@web3-react/core'
+import { useBuyHero } from '@hook/useBuyHero';
+import Button from '@components/Button';
 import './hero.css'
 
 function HeroCard(props: HeroDetailType) {
@@ -25,15 +25,10 @@ function HeroPage() {
     const { account, balance } = useCurrencyBalance();
     const { queryHeroes, heroes } = useQueryHeroes();
     const { buyHero, transactionHash } = useBuyHero();
-    const { connector } = useWeb3React();
 
     useEffect(() => {
-        queryHeroes()
+        queryHeroes() // todo need to use emit event to update
     }, [account, transactionHash, balance])
-
-    const switchChain = (chainId: number) => {
-        connector.activate({ chainId })
-    }
 
     return (
         <>
@@ -54,28 +49,15 @@ function HeroPage() {
                 })}
             </div>
             <div className="card">
-                <button onClick={tryActivate}>
+                <Button onClick={tryActivate}>
                     连接钱包
-                </button>
-                <button onClick={() => {
-                    buyHero();
-                }}>
+                </Button>
+                <Button onClick={buyHero}>
                     购买英雄
-                </button>
-                <button onClick={queryHeroes}>
+                </Button>
+                <Button onClick={queryHeroes}>
                     查看英雄
-                </button>
-
-                <button onClick={() => {
-                    switchChain(1)
-                }}>
-                    切换到主网
-                </button>
-                <button onClick={() => {
-                    switchChain(1337)
-                }}>
-                    切换到测试网(1337)
-                </button>
+                </Button>
             </div >
         </>
     )
