@@ -1,7 +1,6 @@
 
 import { useWeb3React } from '@web3-react/core'
-// import { getChainInfo } from 'constants/chainInfo'
-import styled, { useTheme } from 'styled-components'
+import styled from 'styled-components'
 import { getChainInfo } from '@constants/chain'
 
 const LOGO_SIZE = 20
