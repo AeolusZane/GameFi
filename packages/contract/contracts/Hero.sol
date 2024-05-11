@@ -16,7 +16,7 @@ contract Hero {
     }
 
     function setFeeToSetter(address _feeToSetter) external {
-        require(msg.sender == feeToSetter, 'UniswapV2: FORBIDDEN');
+        require(msg.sender == feeToSetter, "UniswapV2: FORBIDDEN");
         feeToSetter = _feeToSetter;
     }
 
@@ -63,9 +63,28 @@ contract Hero {
         return uint32((hero >> 22) & 0x1F);
     }
 
+    function transferHero(uint hero, address other) public {
+        // 将sender的hero转移到other
+        uint[] storage heroes = addressToHeroes[msg.sender];
+        uint len = heroes.length;
+        
+        for (uint i = 0; i < len; i++) {
+            // 只转移一个hero
+            if (heroes[i] == hero) {
+                heroes[i] = heroes[len - 1];
+                break;
+            }
+        }
+        heroes.pop();
+        addressToHeroes[other].push(hero);
+    }
+
     // payable：表示这个函数可以接受以太币
     function createHero(Class _class) public payable {
-        require(msg.value >= 0.001 ether, "Please send more money, minimum 0.001 ether");
+        require(
+            msg.value >= 0.001 ether,
+            "Please send more money, minimum 0.001 ether"
+        );
         payable(feeToSetter).transfer(msg.value);
 
         // strength, health, dexterity, intellect, magic
