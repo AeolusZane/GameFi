@@ -91,8 +91,8 @@ mobile [ToDo]
 ## TodoList
 - todo：替换支付等交互模块web3-react->web3.js✅
 - todo：重写切换select组件✅
-- todo：切换MetaMask链（切换网络✅
-- todo：初次进入页面链接钱包（缓存到浏览器）
+- todo：切换MetaMask链（切换网络）✅
+- todo：初次进入页面链接钱包（缓存到浏览器）✅
 - todo(bug)：使用事件监听重写balance模块（现在交易后balance不会变，英雄也不会变），切换钱包后也不会变，要改成购买后用emit事件更新
 - todo：英雄可以转让
 - todo：alchemy上部署链
@@ -113,3 +113,6 @@ mobile [ToDo]
 2024/5/11
 - 重写selector和button组件
 - 使用styled-components，配置全局样式（theme的darkMode还有bug）
+- 添加错误输出模块
+- 初次进入页面链接钱包
+- 解决切换链后信息不同步问题
