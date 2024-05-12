@@ -8,12 +8,15 @@
   "scripts": {
     "compile": "npx hardhat compile",
     "test": "npx hardhat test",
-    "ignition": "sh clear_deployments.sh & npx hardhat ignition deploy ignition/modules/Hero.ts --network localhost",
+    "clear_deploy": "sh clear_deployments.sh",
+    "ignition": "npm run clear_deploy && NODE_ENV=development npx hardhat ignition deploy ignition/modules/Hero.ts --network localhost",
+    "ignition_alchemy": "NODE_ENV=production npx hardhat ignition deploy ignition/modules/Hero.ts --network infura",
     "node": "npx hardhat node"
   },
   "dependencies": {
     "@nomicfoundation/hardhat-ethers": "^3.0.5",
     "bignumber.js": "^9.1.2",
+    "dotenv": "^16.4.5",
     "ethers": "^6.12.1",
     "hardhat-gas-reporter": "^2.1.1"
   }
