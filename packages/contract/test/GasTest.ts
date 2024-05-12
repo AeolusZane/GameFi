@@ -1,13 +1,9 @@
 import {
     loadFixture,
 } from "@nomicfoundation/hardhat-toolbox/network-helpers";
-import { expect } from "chai";
 import { ethers } from "hardhat";
-import BigNumber from "bignumber.js";
 import { HardhatEthersSigner } from "@nomicfoundation/hardhat-ethers/signers";
-async function getBalance(address: string) {
-    return await ethers.provider.getBalance(address);
-}
+
 describe("GasTest", function () {
     let OWNER: HardhatEthersSigner;
     let OTHER: HardhatEthersSigner;
