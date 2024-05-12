@@ -1,5 +1,28 @@
-# A NFT/GameFi Project
+<h1 align="center">A NFT/GameFi Project</h1>
+
+----
+
 Tags: `hardhat` `web3-react` `ethers.js` `solidity` `alchemy` `typescript` `react` `react-native` `web3.js`
+
+## .env config
+This is important! :)
+
+Create `.env` file in the path `packages/contract`, and type these two accounts in it. this will init two test accounts in the hardhat test_net when you deploy your private chain.
+
+Also, if you want to deploy your contract in the ethereum or alchemy, append your privatekey in this `.env` file.
+
+```shell
+## Account #0: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 (10000 ETH)
+## Private Key: 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+TEST_NET_ADDRESS=0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+TEST_NET_PRIVATE_KEY=0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+
+## Account #1: 0x70997970C51812dc3A010C7d01b50e0d17dc79C8 (10000 ETH)
+## Private Key: 0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d
+
+TEST_NET_ADDRESS2=0x70997970C51812dc3A010C7d01b50e0d17dc79C8
+TEST_NET_PRIVATE_KEY2=0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d
+```
 
 ## deploy
 
@@ -13,7 +36,7 @@ Tags: `hardhat` `web3-react` `ethers.js` `solidity` `alchemy` `typescript` `reac
 
 以下是开发过程部分
 
-## 项目架构
+## 项目架构[Project Content]
 monorepo，合约和前台部分分离，web和移动端分离
 
 - [x] 合约
@@ -110,7 +133,6 @@ this is a MetaMask Error also. refresh the nonce data in the setting of the Meta
 - todo：英雄可以转让✅
 - todo：alchemy上部署链
 
-
 ## Log
 2024/5/9
 - 添加创建英雄付款到创始人账号合约功能
@@ -133,3 +155,8 @@ this is a MetaMask Error also. refresh the nonce data in the setting of the Meta
 - 合约：英雄转移
 - 合约：费用计算表格
 - 合约：英雄转移添加emit事件
+
+2024/5/12
+- 领取sepolia空投，在alchemy上部署合约
+- alchemy链id:11155111，RPC URL:https://sepolia.infura.io/v3/
+- 需要一个private key访问alchemy的testnet
