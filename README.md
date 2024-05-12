@@ -4,6 +4,15 @@
 
 Tags: `hardhat` `web3-react` `ethers.js` `solidity` `alchemy` `typescript` `react` `react-native` `web3.js`
 
+## Already Deployed On The Test Net ;) ;) ❗️❗️
+
+5/12/2024 20:43 `GMT+0800`
+
+I deployed this contract on the Sepolia test net today, wow, below is the contract address~~, you can call it in your own app~
+
+0xE88c5417E2894cbe37D733913Ad82A5641a8c19D
+
+
 ## .env config
 This is important! :)
 
@@ -12,6 +21,7 @@ Create `.env` file in the path `packages/contract`, and type these two accounts 
 Also, if you want to deploy your contract in the ethereum or alchemy, append your privatekey in this `.env` file.
 
 ```shell
+ADDRESS=0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 ## Change this address to your wallet account address when deploy on the alchemy
 ## Account #0: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 (10000 ETH)
 ## Private Key: 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
 TEST_NET_ADDRESS=0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
@@ -31,8 +41,9 @@ TEST_NET_PRIVATE_KEY2=0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b
 - `pnpm run compile` 编译合约
 - `pnpm run ignition` 部署合约
 - `pnpm run web` 启动web前台
-
+---
 - `pnpm run test:c` 合约单元测试
+- `pnpm run ignition_alchemy` 发布到测试链
 
 以下是开发过程部分
 
@@ -131,7 +142,10 @@ this is a MetaMask Error also. refresh the nonce data in the setting of the Meta
 - todo：处理主题配置没生效✅
 - todo：使用事件监听重写balance模块，改成购买后通过emit事件更新balance✅
 - todo：英雄可以转让✅
-- todo：alchemy上部署链
+- todo：alchemy上部署链✅
+- todo：在本地项目里访问测试链创建英雄✅
+- todo：怎么查看部署合约的地址（除了log以外）
+- todo：bug，当初次链接账号时，页面内容没有响应，没有更新
 
 ## Log
 2024/5/9
@@ -157,6 +171,12 @@ this is a MetaMask Error also. refresh the nonce data in the setting of the Meta
 - 合约：英雄转移添加emit事件
 
 2024/5/12
-- 领取sepolia空投，在alchemy上部署合约
+- 领取sepolia空投（每天0.5ETH），在alchemy上部署合约
 - alchemy链id:11155111，RPC URL:https://sepolia.infura.io/v3/
-- 需要一个private key访问alchemy的testnet
+- 部署在测试网需要的3个东西
+
+    - 选择sepolia网络，network选择ethereum，创建一个project，得到api_key和访问的RPC_URL
+    - 进入sepolia测试网络，领取空投后，在自己钱包里面选择账号，需要钱包账号的PRIVATE_KEY
+    - 钱包账号的ADDRESS
+
+- 合约部署后，ignition会log合约地址，把这个保存下来
