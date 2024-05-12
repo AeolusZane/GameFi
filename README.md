@@ -12,6 +12,9 @@ I deployed this contract on the Sepolia test net today, wow, below is the contra
 
 0xE88c5417E2894cbe37D733913Ad82A5641a8c19D
 
+a little bit excited, this is i buy my hero on my contract which on the Sepolia net.
+![](./assets/hello_hero.png)
+
 
 ## .env config
 This is important! :)
@@ -71,9 +74,9 @@ mobile [ToDo]
     属性生成，随机生成属性值，值在0 ~ 18，0 ~ 17...，0 ~ 13之间随机
     例如，第一次生成Health，值会在0 ~ 18之间随机，第二次生成Intellect，值会在0 ~ 17之间随机，and so on.
 - 一个玩家可以创建多个英雄 ✅
-    多个英雄保存在自己的账号地址里
-- 英雄命名/改名 TODO
+    多个英雄保存在自己的账号地址里✅
 - 英雄转移【不付费】 ✅
+- 英雄命名/改名 TODO
 - 属性综合排名 TODO
 
 ### 合约测试 ✅
@@ -146,6 +149,7 @@ this is a MetaMask Error also. refresh the nonce data in the setting of the Meta
 - todo：在本地项目里访问测试链创建英雄✅
 - todo：怎么查看部署合约的地址（除了log以外）
 - todo：bug，当初次链接账号时，页面内容没有响应，没有更新
+- todo：开发环境合约地址跟随链切换
 
 ## Log
 2024/5/9
@@ -180,3 +184,5 @@ this is a MetaMask Error also. refresh the nonce data in the setting of the Meta
     - 钱包账号的ADDRESS
 
 - 合约部署后，ignition会log合约地址，把这个保存下来
+- 添加sepolia网
+- 链接sepolia网创建英雄
