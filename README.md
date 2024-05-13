@@ -186,3 +186,6 @@ this is a MetaMask Error also. refresh the nonce data in the setting of the Meta
 - 合约部署后，ignition会log合约地址，把这个保存下来
 - 添加sepolia网
 - 链接sepolia网创建英雄
+
+2024/5/13
+- 使用EIP-3085在链没有连接钱包时创建链
