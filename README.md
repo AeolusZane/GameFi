@@ -147,7 +147,7 @@ this is a MetaMask Error also. refresh the nonce data in the setting of the Meta
 - todo：英雄可以转让✅
 - todo：alchemy上部署链✅
 - todo：在本地项目里访问测试链创建英雄✅
-- todo：怎么查看部署合约的地址（除了log以外）
+- todo：怎么查看部署合约的地址（除了log以外）✅（abi里有记录，合约交易里有记录）
 - todo：bug，当初次链接账号时，页面内容没有响应，没有更新
 - todo：开发环境合约地址跟随链切换
 
