@@ -24,6 +24,7 @@ Create `.env` file in the path `packages/contract`, and type these two accounts 
 Also, if you want to deploy your contract in the ethereum or alchemy, append your privatekey in this `.env` file.
 
 ```shell
+## packages/contract/.env
 ADDRESS=0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 ## Change this address to your wallet account address when deploy on the alchemy
 ## Account #0: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 (10000 ETH)
 ## Private Key: 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
@@ -35,6 +36,13 @@ TEST_NET_PRIVATE_KEY=0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf
 
 TEST_NET_ADDRESS2=0x70997970C51812dc3A010C7d01b50e0d17dc79C8
 TEST_NET_PRIVATE_KEY2=0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d
+```
+
+
+```shell
+## packages/web-ui/.env
+DEV_CONTRACT_ADDRESS='"0x5FbDB2315678afecb367f032d93F642f64180aa3"'
+PRO_CONTRACT_ADDRESS='"0xE88c5417E2894cbe37D733913Ad82A5641a8c19D"'
 ```
 
 ## deploy
@@ -148,8 +156,12 @@ this is a MetaMask Error also. refresh the nonce data in the setting of the Meta
 - todo：alchemy上部署链✅
 - todo：在本地项目里访问测试链创建英雄✅
 - todo：怎么查看部署合约的地址（除了log以外）✅（abi里有记录，合约交易里有记录）
+- todo：开发环境合约地址跟随链切换✅
+- todo：可选择英雄种类进行购买
+- todo：交易成功后弹窗，而不是显示transaction
 - todo：bug，当初次链接账号时，页面内容没有响应，没有更新
-- todo：开发环境合约地址跟随链切换
+- todo：封装合约jdk
+- todo：国际化翻译
 
 ## Log
 2024/5/9
@@ -192,3 +204,6 @@ this is a MetaMask Error also. refresh the nonce data in the setting of the Meta
 
 2024/5/14
 - 查看部署的合约，最近准备下interview
+
+2024/5/15
+- 配置合约切换工程化

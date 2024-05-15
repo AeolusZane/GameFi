@@ -3,7 +3,10 @@ import react from '@vitejs/plugin-react'
 import { tamaguiExtractPlugin, tamaguiPlugin } from '@tamagui/vite-plugin'
 import tamaguiConfig from './tamagui.config'
 import path from 'path'
-console.log(process.env.NODE_ENV)
+import dotenv from "dotenv";
+
+dotenv.config();
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(),
@@ -18,5 +21,9 @@ export default defineConfig({
       "@constants": path.resolve(__dirname, "src/constants"),
       "@log": path.resolve(__dirname, "src/log"),
     }
+  },
+  define: {
+    "process.env.DEV_CONTRACT_ADDRESS": process.env.DEV_CONTRACT_ADDRESS,
+    "process.env.PRO_CONTRACT_ADDRESS": process.env.PRO_CONTRACT_ADDRESS,
   }
 })
