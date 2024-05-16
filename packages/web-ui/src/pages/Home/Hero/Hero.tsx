@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { useBuyHero } from '@hook/useBuyHero';
 import { useWeb3React } from '@web3-react/core'
 import Button from '@components/Button';
+import { useToast } from '@components/Toast';
 import './hero.css'
 
 function HeroCard(props: HeroDetailType) {
@@ -26,7 +27,14 @@ function HeroPage() {
     const { account, balance } = useCurrencyBalance();
     const { queryHeroes, heroes } = useQueryHeroes();
     const { buyHero, transactionHash } = useBuyHero();
-    const { chainId } = useWeb3React()
+    const { chainId } = useWeb3React();
+    const { show } = useToast()
+
+    useEffect(() => {
+        if (transactionHash) {
+            show(transactionHash)
+        }
+    }, [transactionHash])
 
     useEffect(() => {
         queryHeroes() // todo need to use emit event to update
@@ -48,9 +56,6 @@ function HeroPage() {
                 <div>
                     balance: {balance} ETH
                 </div>
-                {transactionHash ? <div>
-                    transaction succeed!! transaction hash~: {transactionHash}
-                </div> : null}
             </div>
             <div className='hero-container'>
                 {heroes.map((h, i) => {
