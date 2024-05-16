@@ -211,3 +211,6 @@ this is a MetaMask Error also. refresh the nonce data in the setting of the Meta
 
 2024/5/15
 - 配置合约切换工程化
+
+2024/5/16
+- 处理tamagui的类型问题
