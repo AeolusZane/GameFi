@@ -6,8 +6,8 @@ const Button = styled.button`
     font-size: 1em;
     font-weight: 500;
     font-family: inherit;
-    background-color: ${() => 'white'};
-    color: ${() => { return 'black' }};
+    background-color: ${({ theme }) => theme.darkMode ? theme.surface1 : theme.neutral1};
+    color: ${({ theme }) => theme.darkMode ? theme.neutral1 : theme.surface1};
     cursor: pointer;
     transition: border-color 0.25s;
     &:hover {

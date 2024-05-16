@@ -1,9 +1,23 @@
 import React from 'react'
 import { Button, YStack } from 'tamagui'
 import { Toast, ToastProvider, ToastViewport } from '@tamagui/toast'
+import { atom, useAtom } from 'jotai'
 
+const toastAtom = atom(false)
+
+const useToast = () => {
+    const [open, setOpen] = useAtom(toastAtom)
+
+    return {
+        open,
+        setOpen,
+    }
+
+}
+
+// 用jotai的原子状态管理库
 export default () => {
-    const [open, setOpen] = React.useState(false)
+    const { open, setOpen } = useToast()
     const timerRef = React.useRef(0)
 
     React.useEffect(() => {
@@ -11,7 +25,7 @@ export default () => {
     }, [])
 
     return (
-        <YStack ai="center">
+        <YStack ai='center'>
             <Button
                 onPress={() => {
                     setOpen(false)
@@ -24,13 +38,13 @@ export default () => {
                 Single Toast
             </Button>
             <ToastProvider>
-                <ToastViewport />
+                <ToastViewport top={0} left={0} right={0} />
                 <Toast
-                    onOpenChange={setOpen}
+                    // onOpenChange={setOpen}
                     open={open}
                     animation="100ms"
-                    enterStyle={{ x: -20, opacity: 0 }}
-                    exitStyle={{ x: -20, opacity: 0 }}
+                    enterStyle={{ opacity: 0, scale: 0.5, y: -25 }}
+                    exitStyle={{ opacity: 0, scale: 1, y: -20 }}
                     opacity={1}
                     x={0}
                 >
