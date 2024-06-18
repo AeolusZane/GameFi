@@ -166,6 +166,8 @@ this is a MetaMask Error also. refresh the nonce data in the setting of the Meta
 - todo：bug，当初次链接账号时，页面内容没有响应，没有更新
 - todo：封装合约jdk
 - todo：国际化翻译
+- todo：transfer交互改良
+- todo：ERC721改造合约
 
 ## Log
 2024/5/9
@@ -214,3 +216,7 @@ this is a MetaMask Error also. refresh the nonce data in the setting of the Meta
 
 2024/5/16
 - 处理tamagui的类型问题
+
+2024/6/18
+- 使用jotai存储查询hero的变量，合约触发自动调用查询英雄方法
+- 前台添加transferHero方法
