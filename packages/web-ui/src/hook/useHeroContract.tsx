@@ -6,14 +6,15 @@ import { useWeb3React } from '@web3-react/core';
 import { CONTRACT_ADDRESS } from '@constants/contract';
 import Hero from '../../../contract/artifacts/contracts/Hero.sol/Hero.json'
 import { useQueryHeroes } from './useQueryHeroes';
+import { ReactNode } from 'react';
 
-export const heroContractAtom = atom<Contract | null>(null);
+const heroContractAtom = atom<Contract | null>(null);
 const HeroContractContext = createContext<Contract | null>(null);
 
 /**
  * 该钩子用于监听合约事件
  */
-export function useHeroesContractEvent() {
+function useHeroesContractEvent() {
     const heroContract = useAtomValue(heroContractAtom);
     const { queryHeroes } = useQueryHeroes();
 
@@ -41,9 +42,9 @@ export function useHeroesContractEvent() {
 /**
  * 该钩子作为初始化合约的钩子，用于初始化合约
  */
-export function initHeroContract() {
+function initHeroContract() {
     const { provider, chainId } = useWeb3React();
-    const [heroContract, setHeroContract] = useAtom<Contract | null>(heroContractAtom);
+    const [, setHeroContract] = useAtom<Contract | null>(heroContractAtom);
     useEffect(() => {
         if (!provider || !chainId) {
             return;
@@ -52,20 +53,12 @@ export function initHeroContract() {
         const contract = new Contract(CONTRACT_ADDRESS, Hero.abi, signer);
         setHeroContract(contract);
     }, [provider, chainId, setHeroContract])
-
-    return heroContract;
 }
 
-import { ReactNode } from 'react';
-
 export function HeroContractProvider({ children }: { children: ReactNode }) {
-    const heroContract = initHeroContract();
+    initHeroContract();
     useHeroesContractEvent();
-    useEffect(() => {
-        console.log('heroContract', heroContract)
-    }, [heroContract]);
-
-    return <HeroContractContext.Provider value={heroContract}>
+    return <HeroContractContext.Provider value={null}>
         {children}
     </HeroContractContext.Provider>
 }
