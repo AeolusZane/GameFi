@@ -1,20 +1,19 @@
 import { useWeb3React } from '@web3-react/core'
-import { Contract } from '@ethersproject/contracts';
-import { CONTRACT_ADDRESS } from '../constants/contract';
 import Web3 from 'web3';
-import Hero from '../../../contract/artifacts/contracts/Hero.sol/Hero.json'
+import { useHeroContract } from './Contract/useHeroContract'
 import { atom, useAtom } from 'jotai';
 const transactionHashAtom = atom<string | null>(null);
 
 export function useBuyHero() {
     const { account, provider } = useWeb3React();
     const [transactionHash, setTransactionHash] = useAtom<string | null>(transactionHashAtom);
+    const { heroContract } = useHeroContract();
 
     const buyHero = async () => {
-        if (!account || !provider) {
+        if (!account || !provider || !heroContract) {
             return;
         }
-        const contract = new Contract(CONTRACT_ADDRESS, Hero.abi, provider?.getSigner());
+        const contract = heroContract;
         const res = await contract.functions.createHero(0, {
             value: Web3.utils.toWei('0.0012', 'ether'),
         });

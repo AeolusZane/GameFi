@@ -113,5 +113,6 @@ contract Hero {
         } while (len > 0);
 
         addressToHeroes[msg.sender].push(hero);
+        emit TransferHero(address(0), msg.sender, hero);
     }
 }

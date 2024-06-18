@@ -10,10 +10,11 @@ const FROM = '0x70997970C51812dc3A010C7d01b50e0d17dc79C8'
 const TO = '0xE4D4D36a06C1A3B775F44cDA4C9b570111d6A5cB'
 
 function HeroesData() {
-    const { heroesRawData, heroes } = useQueryHeroes();
+    const { heroesRawData } = useQueryHeroes();
 
-    const dataList = heroesRawData.map((h: BigNumber) => {
+    const dataList = heroesRawData.map((h: BigNumber, index) => {
         return <div
+            key={index}
             style={{
                 border: '1px solid black',
                 margin: '10px',

@@ -1,11 +1,10 @@
 import { useWeb3React } from '@web3-react/core'
 import { Contract } from "@ethersproject/contracts"
 import { BigNumber } from '@ethersproject/bignumber'
-import Hero from '../../../contract/artifacts/contracts/Hero.sol/Hero.json'
 import { useEffect, useState } from 'react'
-import { CONTRACT_ADDRESS } from '../constants/contract';
-import { useBuyHero } from './useBuyHero';
+import { heroContractAtom } from './Contract/useHeroContract'
 import log, { LogLevel } from '@log';
+import { useAtomValue } from 'jotai'
 
 export const enum HeroName {
   Mage = "法师",
@@ -42,20 +41,45 @@ function getHeroName(type: number) {
 
 export function useQueryHeroes() {
   const { provider, account, chainId } = useWeb3React();
-  const { transactionHash } = useBuyHero();
   const [heroes, setHeroes] = useState<HeroDetailType[]>([]);
   const [heroesRawData, setHeroesRawData] = useState<any[]>([]);
+  const heroContract = useAtomValue(heroContractAtom);
+
+  useEffect(() => {
+    if (!heroContract) {
+      return;
+    }
+    console.log('multiple times')
+    queryHeroes();
+    // when heroContract is ready, we can listen to the event
+    const heroTransferEventCallback = (from: string, to: string, hero: BigNumber) => {
+      console.log(from, to, hero)
+      queryHeroes();
+    };
+
+    if (heroContract) {
+      // TODO: register multiple times
+      heroContract.on("TransferHero", heroTransferEventCallback);
+    }
+
+    return () => {
+      if (heroContract) {
+        console.log('remove')
+        heroContract.removeAllListeners("TransferHero");
+      }
+    }
+  }, [heroContract])
 
   useEffect(() => {
     queryHeroes();
-  }, [provider, account, chainId, transactionHash])
+  }, [provider, account, chainId])
 
   const queryHeroes = async () => {
-    if (!provider) {
+    if (!provider || !heroContract) {
       return;
     }
     try {
-      const contract = new Contract(CONTRACT_ADDRESS, Hero.abi, provider);
+      const contract = heroContract;
       const res = await contract.functions.getHeroes({
         from: account
       });

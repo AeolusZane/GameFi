@@ -4,9 +4,9 @@ import { useQueryHeroes } from '@hook/useQueryHeroes'
 import type { HeroDetailType } from '@hook/useQueryHeroes'
 import { useEffect } from 'react';
 import { useBuyHero } from '@hook/useBuyHero';
-import { useWeb3React } from '@web3-react/core'
 import Button from '@components/Button';
 import { useToast } from '@components/Toast';
+import { initHeroContract } from '@hook/Contract/useHeroContract'
 import './hero.css'
 import { TransferHero } from './TransferHero';
 
@@ -29,6 +29,7 @@ function HeroPage() {
     const { queryHeroes, heroes } = useQueryHeroes();
     const { buyHero, transactionHash } = useBuyHero();
     const { show } = useToast()
+    initHeroContract();
 
     useEffect(() => {
         if (transactionHash) {
