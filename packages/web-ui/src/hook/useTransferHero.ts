@@ -1,9 +1,9 @@
 import { useWeb3React } from '@web3-react/core'
-import { useHeroContract } from './Contract/useHeroContract';
+import { useHeroContract } from './useHeroContract';
 
 export function useTransferHero() {
     const { account, provider } = useWeb3React();
-    const { heroContract } = useHeroContract();
+    const heroContract = useHeroContract();
     const transferHero = async (hero: any, address: string) => {
         if (!account || !provider || !heroContract) {
             return;

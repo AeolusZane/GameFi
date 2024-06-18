@@ -1,10 +1,13 @@
 import { useWeb3React } from '@web3-react/core'
 import { Contract } from "@ethersproject/contracts"
 import { BigNumber } from '@ethersproject/bignumber'
-import { useEffect, useState } from 'react'
-import { heroContractAtom } from './Contract/useHeroContract'
+import { useEffect } from 'react'
+import { useHeroContract } from './useHeroContract'
+import { atom, useAtom, useAtomValue } from 'jotai'
 import log, { LogLevel } from '@log';
-import { useAtomValue } from 'jotai'
+
+const heroesAtom = atom<HeroDetailType[]>([]);
+const heroesRawDataAtom = atom<any[]>([]);
 
 export const enum HeroName {
   Mage = "法师",
@@ -39,40 +42,23 @@ function getHeroName(type: number) {
   }
 }
 
+export function useHeroes() {
+  const heroes = useAtomValue(heroesAtom);
+  const heroesRawData = useAtomValue(heroesRawDataAtom);
+
+  return { heroes, heroesRawData }
+}
+
+
 export function useQueryHeroes() {
   const { provider, account, chainId } = useWeb3React();
-  const [heroes, setHeroes] = useState<HeroDetailType[]>([]);
-  const [heroesRawData, setHeroesRawData] = useState<any[]>([]);
-  const heroContract = useAtomValue(heroContractAtom);
-
-  useEffect(() => {
-    if (!heroContract) {
-      return;
-    }
-    console.log('multiple times')
-    queryHeroes();
-    // when heroContract is ready, we can listen to the event
-    const heroTransferEventCallback = (from: string, to: string, hero: BigNumber) => {
-      console.log(from, to, hero)
-      queryHeroes();
-    };
-
-    if (heroContract) {
-      // TODO: register multiple times
-      heroContract.on("TransferHero", heroTransferEventCallback);
-    }
-
-    return () => {
-      if (heroContract) {
-        console.log('remove')
-        heroContract.removeAllListeners("TransferHero");
-      }
-    }
-  }, [heroContract])
+  const [heroes, setHeroes] = useAtom<HeroDetailType[]>(heroesAtom);
+  const [heroesRawData, setHeroesRawData] = useAtom<any[]>(heroesRawDataAtom);
+  const heroContract = useHeroContract();
 
   useEffect(() => {
     queryHeroes();
-  }, [provider, account, chainId])
+  }, [provider, account, chainId, heroContract])
 
   const queryHeroes = async () => {
     if (!provider || !heroContract) {

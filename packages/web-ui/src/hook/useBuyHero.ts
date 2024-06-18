@@ -1,13 +1,13 @@
 import { useWeb3React } from '@web3-react/core'
 import Web3 from 'web3';
-import { useHeroContract } from './Contract/useHeroContract'
+import { useHeroContract } from './useHeroContract'
 import { atom, useAtom } from 'jotai';
 const transactionHashAtom = atom<string | null>(null);
 
 export function useBuyHero() {
     const { account, provider } = useWeb3React();
     const [transactionHash, setTransactionHash] = useAtom<string | null>(transactionHashAtom);
-    const { heroContract } = useHeroContract();
+    const heroContract = useHeroContract();
 
     const buyHero = async () => {
         if (!account || !provider || !heroContract) {

@@ -161,6 +161,7 @@ this is a MetaMask Error also. refresh the nonce data in the setting of the Meta
 - todo：在本地项目里访问测试链创建英雄✅
 - todo：怎么查看部署合约的地址（除了log以外）✅（abi里有记录，合约交易里有记录）
 - todo：开发环境合约地址跟随链切换✅
+- todo：合约被多次初始化✅
 - todo：可选择英雄种类进行购买
 - todo：交易成功后弹窗，而不是显示transaction
 - todo：bug，当初次链接账号时，页面内容没有响应，没有更新
@@ -168,7 +169,6 @@ this is a MetaMask Error also. refresh the nonce data in the setting of the Meta
 - todo：国际化翻译
 - todo：transfer交互改良
 - todo：ERC721改造合约
-- todo：合约被多次初始化
 
 ## Log
 2024/5/9
@@ -221,3 +221,4 @@ this is a MetaMask Error also. refresh the nonce data in the setting of the Meta
 2024/6/18
 - 使用jotai存储查询hero的变量，合约触发自动调用查询英雄方法
 - 前台添加transferHero方法
+- 解决多次初始化合约bug

@@ -1,12 +1,11 @@
 import { useActivation } from '@components/Web3Provider'
 import { useCurrencyBalance } from '@hook/useCurrencyBalance'
-import { useQueryHeroes } from '@hook/useQueryHeroes'
+import { useHeroes, useQueryHeroes } from '@hook/useQueryHeroes'
 import type { HeroDetailType } from '@hook/useQueryHeroes'
 import { useEffect } from 'react';
 import { useBuyHero } from '@hook/useBuyHero';
 import Button from '@components/Button';
 import { useToast } from '@components/Toast';
-import { initHeroContract } from '@hook/Contract/useHeroContract'
 import './hero.css'
 import { TransferHero } from './TransferHero';
 
@@ -26,10 +25,10 @@ function HeroCard(props: HeroDetailType) {
 function HeroPage() {
     const { tryActivate, tryDeactivate, isActive } = useActivation();
     const { account, balance } = useCurrencyBalance();
-    const { queryHeroes, heroes } = useQueryHeroes();
+    const { heroes } = useHeroes();
+    const { queryHeroes } = useQueryHeroes();
     const { buyHero, transactionHash } = useBuyHero();
     const { show } = useToast()
-    initHeroContract();
 
     useEffect(() => {
         if (transactionHash) {
