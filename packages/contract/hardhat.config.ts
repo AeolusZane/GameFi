@@ -5,13 +5,13 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const config: HardhatUserConfig = {
-  solidity: "0.8.15",
+  solidity: "0.8.19",
   etherscan: {
     apiKey: process.env.ETHERSCAN_API_KEY!
   },
   networks: {
     hardhat: {
-      chainId: 1337,
+      chainId: 31337,
       accounts: [{
         // By default, hardhat will use the first account as the deployer to deploy the contract
         privateKey: process.env.TEST_NET_PRIVATE_KEY!,

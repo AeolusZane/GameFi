@@ -8,6 +8,7 @@ import { useWeb3React } from '@web3-react/core'
 import Button from '@components/Button';
 import { useToast } from '@components/Toast';
 import './hero.css'
+import { TransferHero } from './TransferHero';
 
 function HeroCard(props: HeroDetailType) {
     return (
@@ -27,7 +28,6 @@ function HeroPage() {
     const { account, balance } = useCurrencyBalance();
     const { queryHeroes, heroes } = useQueryHeroes();
     const { buyHero, transactionHash } = useBuyHero();
-    const { chainId } = useWeb3React();
     const { show } = useToast()
 
     useEffect(() => {
@@ -35,10 +35,6 @@ function HeroPage() {
             show(transactionHash)
         }
     }, [transactionHash])
-
-    useEffect(() => {
-        queryHeroes() // todo need to use emit event to update
-    }, [account, transactionHash, chainId])
 
     const toggleActivate = async () => {
         if (isActive) {
@@ -73,6 +69,7 @@ function HeroPage() {
                     查看英雄
                 </Button>
             </div >
+            <TransferHero />
         </>
     )
 }

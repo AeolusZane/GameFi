@@ -1,5 +1,5 @@
 // // SPDX-License-Identifier: MIT
-pragma solidity =0.8.15;
+pragma solidity =0.8.19;
 
 contract Hero {
     address public feeToSetter;
@@ -27,7 +27,7 @@ contract Hero {
             uint(
                 keccak256(
                     abi.encodePacked(
-                        block.difficulty,
+                        block.prevrandao,
                         block.timestamp,
                         msg.sender
                     )

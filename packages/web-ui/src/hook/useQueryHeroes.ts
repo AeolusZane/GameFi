@@ -2,8 +2,9 @@ import { useWeb3React } from '@web3-react/core'
 import { Contract } from "@ethersproject/contracts"
 import { BigNumber } from '@ethersproject/bignumber'
 import Hero from '../../../contract/artifacts/contracts/Hero.sol/Hero.json'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CONTRACT_ADDRESS } from '../constants/contract';
+import { useBuyHero } from './useBuyHero';
 import log, { LogLevel } from '@log';
 
 export const enum HeroName {
@@ -40,8 +41,14 @@ function getHeroName(type: number) {
 }
 
 export function useQueryHeroes() {
-  const { provider, account } = useWeb3React();
+  const { provider, account, chainId } = useWeb3React();
+  const { transactionHash } = useBuyHero();
   const [heroes, setHeroes] = useState<HeroDetailType[]>([]);
+  const [heroesRawData, setHeroesRawData] = useState<any[]>([]);
+
+  useEffect(() => {
+    queryHeroes();
+  }, [provider, account, chainId, transactionHash])
 
   const queryHeroes = async () => {
     if (!provider) {
@@ -55,6 +62,7 @@ export function useQueryHeroes() {
       const heroes = res[0].map((B: BigNumber) => B.toBigInt());
       const heroDetails = await Promise.all(heroes.map((h: any) => getAttr(h, contract)));
       setHeroes(heroDetails);
+      setHeroesRawData(res[0]);
     } catch (e) {
       log(`you may switch to a chain doesn't have the contract deployed`, LogLevel.WARN)
       setHeroes([]);
@@ -81,5 +89,5 @@ export function useQueryHeroes() {
     }
   }
 
-  return { queryHeroes, heroes }
+  return { queryHeroes, heroes, heroesRawData }
 }
