@@ -168,6 +168,7 @@ this is a MetaMask Error also. refresh the nonce data in the setting of the Meta
 - todo：国际化翻译
 - todo：transfer交互改良
 - todo：ERC721改造合约
+- todo：合约被多次初始化
 
 ## Log
 2024/5/9
