@@ -13,8 +13,6 @@ export function useSelectChain() {
             nativeCurrency: chainInfo.nativeCurrency
         }
         await connector.activate(addChainParameter)
-
-        // await connector.activate({ chainId });
     };
 
     return switchChain

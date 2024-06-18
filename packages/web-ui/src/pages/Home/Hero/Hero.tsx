@@ -1,4 +1,4 @@
-import { useActivation } from '@components/Web3Provider'
+import { useActivation } from '@provider/Web3Provider'
 import { useCurrencyBalance } from '@hook/useCurrencyBalance'
 import { useHeroes, useQueryHeroes } from '@hook/useQueryHeroes'
 import type { HeroDetailType } from '@hook/useQueryHeroes'
@@ -28,7 +28,7 @@ function HeroPage() {
     const { heroes } = useHeroes();
     const { queryHeroes } = useQueryHeroes();
     const { buyHero, transactionHash } = useBuyHero();
-    const { show } = useToast()
+    const { show } = useToast();
 
     useEffect(() => {
         if (transactionHash) {

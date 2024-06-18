@@ -37,6 +37,9 @@
       "@log": [
         "./src/log/index.ts"
       ],
+      "@provider/*": [
+        "./src/provider/*"
+      ],
     }
   },
   "include": [

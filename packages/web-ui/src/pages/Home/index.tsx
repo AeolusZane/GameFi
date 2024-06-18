@@ -1,13 +1,23 @@
 import Hero from './Hero/Hero'
 import NavBar from '@components/NavBar'
-import ToastDemo from '../../components/Toast'
-import { HeroContractProvider } from '@hook/useHeroContract'
+import ToastDemo from '@components/Toast'
+import { UnSupportChain } from '@components/UnSupportChain';
+import { HeroContractProvider } from '@hook/useHeroContract';
+import { useSupportInfo } from '@hook/useSupportInfo';
+
+
 export default function Home() {
+    const { isSupport } = useSupportInfo();
     return <div>
         <NavBar />
+
         <ToastDemo />
-        <HeroContractProvider>
-            <Hero />
-        </HeroContractProvider>
+
+        {isSupport ?
+            (<HeroContractProvider>
+                <Hero />
+            </HeroContractProvider>)
+            : <UnSupportChain />
+        }
     </div>
 }

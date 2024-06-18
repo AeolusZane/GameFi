@@ -38,9 +38,8 @@ const connections = [
     deprecatedInjectedConnection
 ]
 
-export function useActivation() {
-    const { connector, isActive, isActivating } = useWeb3React();
-
+export function initActivation() {
+    const { tryActivate } = useActivation();
     useEffect(() => {
         /**
          * there would be an Error "MetaMask not installed..."
@@ -50,7 +49,11 @@ export function useActivation() {
         setTimeout(() => {
             tryActivate()
         }, 0)
-    }, [])
+    }, []);
+}
+
+export function useActivation() {
+    const { connector, isActive, isActivating } = useWeb3React();
 
     const tryActivate = async () => {
         try {

@@ -10,10 +10,10 @@ dotenv.config();
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(),
-  // tamaguiPlugin(tamaguiConfig),
-  // process.env.NODE_ENV === 'production' ? tamaguiExtractPlugin(tamaguiConfig) : null,
-  
-].filter(Boolean),
+    // tamaguiPlugin(tamaguiConfig),
+    // process.env.NODE_ENV === 'production' ? tamaguiExtractPlugin(tamaguiConfig) : null,
+
+  ].filter(Boolean),
   resolve: {
     alias: {
       "@components": path.resolve(__dirname, "src/components"),
@@ -21,6 +21,7 @@ export default defineConfig({
       "@hook": path.resolve(__dirname, "src/hook"),
       "@constants": path.resolve(__dirname, "src/constants"),
       "@log": path.resolve(__dirname, "src/log"),
+      "@provider": path.resolve(__dirname, "src/provider"),
     }
   },
   define: {
