@@ -40,6 +40,12 @@
       "@provider/*": [
         "./src/provider/*"
       ],
+      "@contract/*": [
+        "./src/contract/*"
+      ],
+      "@abi/*": [
+        "../contract/artifacts/contracts/*"
+      ],
     }
   },
   "include": [

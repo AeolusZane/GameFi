@@ -1,7 +1,7 @@
 import { Contract } from "@ethersproject/contracts";
 import { getAttr, HeroDetailType, HeroName } from "@hook/useQueryHeroes";
 import { useEffect, useState } from "react";
-import { Spinner, YStack } from "tamagui";
+import { Loading } from "@components/Loading";
 import { styled } from "styled-components";
 
 const DEFAULT_HERO_ATTR: HeroDetailType = {
@@ -62,9 +62,7 @@ export function HeroCard({ h, heroContract }: { h: bigint, heroContract: Contrac
     }, [heroContract])
 
     if (!heroContract) {
-        return <YStack padding="$8" alignItems="center">
-            <Spinner size="large" color="$green10" />
-        </YStack>
+        return <Loading />
     }
 
     return (

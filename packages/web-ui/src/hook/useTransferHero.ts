@@ -1,5 +1,5 @@
+import { useHeroContract } from '@contract/useHeroContract';
 import { useWeb3React } from '@web3-react/core'
-import { useHeroContract } from './useHeroContract';
 
 export function useTransferHero() {
     const { account, provider } = useWeb3React();

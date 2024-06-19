@@ -1,6 +1,6 @@
 import { SupportChains } from "@constants/chain";
-import { useWeb3React } from "@web3-react/core";
 import { initActivation } from '@provider/Web3Provider'
+import { useWeb3React } from "@web3-react/core";
 
 /**
  * 检查该链是否支持

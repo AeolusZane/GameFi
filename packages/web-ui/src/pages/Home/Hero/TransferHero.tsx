@@ -4,17 +4,18 @@ import { useTransferHero } from '@hook/useTransferHero'
 import { useHeroes } from '@hook/useQueryHeroes'
 import { useWeb3React } from '@web3-react/core';
 import Button from '@components/Button';
+import { useHeroContract } from '@contract/useHeroContract';
 import { BigNumber } from '@ethersproject/bignumber';
+import { HeroCard } from '@components/HeroCard';
 import { Input } from 'tamagui';
 import styled from 'styled-components';
 import { useState, useTransition } from 'react';
+import { Loading } from '@components/Loading';
 
-const FROM = '0x70997970C51812dc3A010C7d01b50e0d17dc79C8'
 const TO = '0xE4D4D36a06C1A3B775F44cDA4C9b570111d6A5cB'
 
 function HeroesData() {
     const { heroesRawData } = useHeroes();
-
     const dataList = heroesRawData.map((h: BigNumber, index) => {
         return <div
             key={index}
@@ -78,12 +79,22 @@ function Transfer() {
     const { heroesRawData } = useHeroes();
     const [to, setTo] = useState<string>(TO)
     const [_isPending, startTransition] = useTransition();
+    const heroContract = useHeroContract();
+
+    if ((heroesRawData.length === 0)) {
+        return null;
+    }
+    if (!heroContract) {
+        return <Loading />
+    }
+
 
     return <TransferContainer>
         <TransferDescription>
             <TransferHeader>
                 {`transfer hero: ${heroesRawData[0]}`}
             </TransferHeader>
+            <HeroCard h={heroesRawData[0].toBigInt()} heroContract={heroContract} />
             <FormItemWrapper label='current:'>
                 <Input
                     flexGrow={1}

@@ -1,6 +1,6 @@
 import { useWeb3React } from '@web3-react/core'
+import { useHeroContract } from '@contract/useHeroContract'
 import Web3 from 'web3';
-import { useHeroContract } from './useHeroContract'
 import { atom, useAtom } from 'jotai';
 const transactionHashAtom = atom<string | null>(null);
 

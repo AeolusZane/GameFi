@@ -226,3 +226,4 @@ this is a MetaMask Error also. refresh the nonce data in the setting of the Meta
 2024/6/19
 - 改下部分typescript类型
 - 添加loading和英雄卡片风格
+- project modularization

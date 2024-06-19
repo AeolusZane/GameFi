@@ -22,6 +22,8 @@ export default defineConfig({
       "@constants": path.resolve(__dirname, "src/constants"),
       "@log": path.resolve(__dirname, "src/log"),
       "@provider": path.resolve(__dirname, "src/provider"),
+      "@contract": path.resolve(__dirname, "src/contract"),
+      "@abi": path.resolve(__dirname, "../contract/artifacts/contracts"),
     }
   },
   define: {

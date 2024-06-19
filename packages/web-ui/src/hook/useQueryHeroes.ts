@@ -1,13 +1,15 @@
 import { useWeb3React } from '@web3-react/core'
 import { Contract } from "@ethersproject/contracts"
 import { BigNumber } from '@ethersproject/bignumber'
-import { useEffect } from 'react'
-import { useHeroContract } from './useHeroContract'
-import { atom, useAtom, useAtomValue } from 'jotai'
 import log, { LogLevel } from '@log';
+import { useHeroContract } from '@contract/useHeroContract'
+import { useEffect } from 'react'
+import { atom, useAtom, useAtomValue } from 'jotai'
 
 const heroesAtom = atom<bigint[]>([]);
-const heroesRawDataAtom = atom<any[]>([]);
+const heroesRawDataAtom = atom<HeroRawDataType[]>([]);
+
+type HeroRawDataType = BigNumber
 
 export const enum HeroName {
   Mage = "法师",
@@ -79,7 +81,7 @@ async function bigintHeroesToDetail(heroes: bigint[], contract: Contract): Promi
 export function useQueryHeroes() {
   const { provider, account, chainId } = useWeb3React();
   const [heroes, setHeroes] = useAtom<bigint[]>(heroesAtom);
-  const [heroesRawData, setHeroesRawData] = useAtom<any[]>(heroesRawDataAtom);
+  const [heroesRawData, setHeroesRawData] = useAtom<HeroRawDataType[]>(heroesRawDataAtom);
   const heroContract = useHeroContract();
 
   useEffect(() => {
@@ -94,8 +96,8 @@ export function useQueryHeroes() {
       const contract = heroContract;
       const res = await contract.functions.getHeroes({
         from: account
-      });
-      const heroes = res[0].map((B: BigNumber) => B.toBigInt());
+      }) as HeroRawDataType[][];
+      const heroes = res[0].map((B: HeroRawDataType) => B.toBigInt());
       setHeroes(heroes);
       setHeroesRawData(res[0]);
     } catch (e) {

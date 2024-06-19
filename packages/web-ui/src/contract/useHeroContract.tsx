@@ -1,12 +1,11 @@
+import { useQueryHeroes } from '@hook/useQueryHeroes';
 import { Contract } from '@ethersproject/contracts';
-import { useEffect, createContext } from 'react';
 import { BigNumber } from '@ethersproject/bignumber'
-import { atom, useAtom, useAtomValue } from 'jotai';
-import { useWeb3React } from '@web3-react/core';
 import { CONTRACT_ADDRESS } from '@constants/contract';
-import Hero from '../../../contract/artifacts/contracts/Hero.sol/Hero.json'
-import { useQueryHeroes } from './useQueryHeroes';
-import { ReactNode } from 'react';
+import Hero from '@abi/Hero.sol/Hero.json'
+import { useWeb3React } from '@web3-react/core';
+import { useEffect, createContext, ReactNode } from 'react';
+import { atom, useAtom, useAtomValue } from 'jotai';
 
 const heroContractAtom = atom<Contract | null>(null);
 const HeroContractContext = createContext<Contract | null>(null);

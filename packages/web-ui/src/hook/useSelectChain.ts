@@ -1,5 +1,5 @@
-import { useWeb3React } from "@web3-react/core";
 import { getChainInfo, PUBLIC_RPC_URLS, MAIN_NETS } from "@constants/chain";
+import { useWeb3React } from "@web3-react/core";
 
 export function useSelectChain() {
     const { connector } = useWeb3React();
