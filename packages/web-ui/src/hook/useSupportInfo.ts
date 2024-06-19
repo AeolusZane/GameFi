@@ -7,9 +7,7 @@ import { useWeb3React } from "@web3-react/core";
  */
 
 export function useSupportInfo() {
-    const {
-        chainId
-    } = useWeb3React();
+    const { chainId } = useWeb3React();
     initActivation();
     const isSupport = SupportChains.includes(Number(chainId));
     return {

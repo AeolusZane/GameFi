@@ -162,9 +162,10 @@ this is a MetaMask Error also. refresh the nonce data in the setting of the Meta
 - todo：怎么查看部署合约的地址（除了log以外）✅（abi里有记录，合约交易里有记录）
 - todo：开发环境合约地址跟随链切换✅
 - todo：合约被多次初始化✅
+- todo：bug，当初次链接账号时，页面内容没有响应，没有更新✅
+- todo：balance没有跟随账号切换更新✅
 - todo：可选择英雄种类进行购买
 - todo：交易成功后弹窗，而不是显示transaction
-- todo：bug，当初次链接账号时，页面内容没有响应，没有更新
 - todo：封装合约jdk
 - todo：国际化翻译
 - todo：transfer交互改良
