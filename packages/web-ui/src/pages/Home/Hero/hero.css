@@ -21,18 +21,3 @@
     gap: 10px;
     flex-wrap: wrap;
 }
-
-.hero-info{
-    border-radius: 5px;
-    border-color: blanchedalmond;
-    border: 1px solid;
-    text-align: left;
-    padding:0 1em;
-    min-width: 120px;
-}
-
-.hero-info p{
-    display: block;
-    padding: 0.2em 0;
-}
-  
