@@ -1,6 +1,6 @@
 import { Contract } from "@ethersproject/contracts";
 import { getAttr, HeroDetailType, HeroName } from "@hook/useQueryHeroes";
-import { useEffect, useState } from "react";
+import { useEffect, useState, ReactNode } from "react";
 import { Loading } from "@components/Loading";
 import { styled } from "styled-components";
 
@@ -12,10 +12,15 @@ const DEFAULT_HERO_ATTR: HeroDetailType = {
     dex: 0,
     health: 0,
 }
-let i = 0;
+
 type HeroInfoProps = {
-    heroClz: any;
+    heroClz: HeroName;
     theme: any;
+}
+
+type HeroCardProps = {
+    heroClz: HeroName,
+    children: ReactNode;
 }
 
 function heroClassToColor(heroClass: string) {
@@ -31,22 +36,35 @@ function heroClassToColor(heroClass: string) {
     }
 }
 
-
-const HeroInfo = styled.div<HeroInfoProps>`
+const InnerInfo = styled.div<HeroInfoProps>`
     border-radius: 5px;
-    border: ${({ heroClz }) => heroClassToColor(heroClz) + ' 0.1rem solid'};
-    height:11rem;
+    border: ${({ heroClz }) => heroClassToColor(heroClz) + ' 0.1rem dashed'};
     text-align: left;
-    padding:0 1rem;
+    padding:0.2rem 1rem;
     min-width:7rem;
 
     color:${({ heroClz }) => heroClassToColor(heroClz)};
     & p{
         display: block;
         padding: 0.2em 0;
-    
     }
 `
+
+
+const HeroInfo = styled.div<HeroInfoProps>`
+    border-radius: 5px;
+    border: ${({ heroClz }) => heroClassToColor(heroClz) + ' 0.1rem solid'};
+    padding:0.5rem 0.5rem;
+    color:${({ heroClz }) => heroClassToColor(heroClz)};
+`
+
+const HeroCardWrapper = ({ heroClz, children }: HeroCardProps) => {
+    return <HeroInfo heroClz={heroClz} >
+        <InnerInfo heroClz={heroClz}>
+            {children}
+        </InnerInfo>
+    </HeroInfo>
+}
 
 
 export function HeroCard({ h, heroContract }: { h: bigint, heroContract: Contract | null }) {
@@ -66,13 +84,13 @@ export function HeroCard({ h, heroContract }: { h: bigint, heroContract: Contrac
     }
 
     return (
-        <HeroInfo heroClz={attr.name} >
+        <HeroCardWrapper heroClz={attr.name} >
             <p>职业: {attr.name}</p>
             <p>魔法: {attr.magic.toString()}</p>
             <p>力量: {attr.strength.toString()}</p>
             <p>智力: {attr.intellect.toString()}</p>
             <p>敏捷: {attr.dex.toString()}</p>
             <p>生命: {attr.health.toString()}</p>
-        </HeroInfo>
+        </HeroCardWrapper>
     )
 }
