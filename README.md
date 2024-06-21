@@ -19,6 +19,8 @@ publish processing would be like this...
 
 execute `make` to publish this project into your vercel account
 
+attention! set the directory as `./packages/web-ui`
+
 ![](./assets/vercel_build.jpg)
 
 ## Already Deployed On The Test Net ;) ;) ❗️❗️
