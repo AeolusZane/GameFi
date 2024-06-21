@@ -91,6 +91,8 @@ export function useQueryHeroes() {
 
   const queryHeroes = async () => {
     if (!provider || !heroContract) {
+      setHeroes([]);
+      setHeroesRawData([]);
       return;
     }
     try {

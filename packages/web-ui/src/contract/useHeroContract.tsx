@@ -51,6 +51,7 @@ function initHeroContract() {
         const signer = provider.getSigner();
         const contractAddress = CONTRACT_ADDRESS_LIST.find(item => item.chainId === chainId)?.address;
         if (!contractAddress) {
+            setHeroContract(null);
             console.error('contract address not found');
             return;
         }
