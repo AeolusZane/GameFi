@@ -6,6 +6,8 @@ Tags: `hardhat` `web3-react` `ethers.js` `solidity` `alchemy` `typescript` `reac
 
 ## Project Demo Published Online Now ;) 
 
+6/21/2024 15:02 `GMT+0800`
+
 check [here](https://gamefi-6tzlhqjr3-aeoluszanes-projects.vercel.app) to see online demo
 
 ### Publish project use vercel
