@@ -8,7 +8,7 @@ Tags: `hardhat` `web3-react` `ethers.js` `solidity` `alchemy` `typescript` `reac
 
 6/21/2024 15:02 `GMT+0800`
 
-check [here](https://gamefi-6tzlhqjr3-aeoluszanes-projects.vercel.app) to see online demo
+check [here](https://gamefi-aeoluszane-aeoluszanes-projects.vercel.app/?_vercel_share=tkTYDJD85TT8KafOnAcBP7pEjdwNbDls) to see online demo
 
 ### Publish project use vercel
 if you want to deploy this project please install [vercel](https://vercel.com/)
