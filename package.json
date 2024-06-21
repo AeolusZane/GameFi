@@ -9,6 +9,7 @@
     "node": "pnpm --filter \"contract\" node",
     "ignition": "pnpm --filter \"contract\" run ignition",
     "test:c": "pnpm --filter \"contract\" run test",
-    "web": "pnpm --filter \"web-ui\" dev"
+    "web": "pnpm --filter \"web-ui\" dev",
+    "build": "pnpm --filter \"web-ui\" run build"
   }
 }

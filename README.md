@@ -4,6 +4,21 @@
 
 Tags: `hardhat` `web3-react` `ethers.js` `solidity` `alchemy` `typescript` `react` `react-native` `web3.js`
 
+## Project Demo Published Online Now ;) 
+
+check [here](https://gamefi-6tzlhqjr3-aeoluszanes-projects.vercel.app) to see online demo
+
+### Publish project use vercel
+if you want to deploy this project please install [vercel](https://vercel.com/)
+
+you can check vercel website here: https://vercel.com/
+
+publish processing would be like this...
+
+execute `make` to publish this project into your vercel account
+
+![](./assets/vercel_build.png)
+
 ## Already Deployed On The Test Net ;) ;) ❗️❗️
 
 5/12/2024 20:43 `GMT+0800`
@@ -236,3 +251,8 @@ this is a MetaMask Error also. refresh the nonce data in the setting of the Meta
 - 改下部分typescript类型
 - 添加loading和英雄卡片风格
 - project modularization
+
+2024/6/21
+- 修改一下项目内链合约配置
+- 使用vercel部署前台项目
+- 修改部分build报错

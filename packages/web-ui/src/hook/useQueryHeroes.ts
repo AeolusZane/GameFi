@@ -73,10 +73,11 @@ export const getAttr = async (h: bigint, contract: Contract) => {
   }
 }
 
-async function bigintHeroesToDetail(heroes: bigint[], contract: Contract): Promise<HeroDetailType[]> {
-  const heroDetails = await Promise.all(heroes.map((h: any) => getAttr(h, contract)));
-  return heroDetails;
-}
+
+// async function bigintHeroesToDetail(heroes: bigint[], contract: Contract): Promise<HeroDetailType[]> {
+//   const heroDetails = await Promise.all(heroes.map((h: any) => getAttr(h, contract)));
+//   return heroDetails;
+// }
 
 export function useQueryHeroes() {
   const { provider, account, chainId } = useWeb3React();

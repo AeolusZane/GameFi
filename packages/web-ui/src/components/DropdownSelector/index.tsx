@@ -126,7 +126,7 @@ export function DropdownSelector({
   internalMenuItems,
   dataTestId,
   optionsContainerTestId,
-  tooltipText,
+  // tooltipText,
   hideChevron,
   buttonCss,
   menuFlyoutCss,
