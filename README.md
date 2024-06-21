@@ -45,9 +45,17 @@ PRIVATE_KEY=0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d
 
 ```shell
 ## packages/web-ui/.env
-DEV_CONTRACT_ADDRESS='"0x5FbDB2315678afecb367f032d93F642f64180aa3"'
-PRO_CONTRACT_ADDRESS='"0xE88c5417E2894cbe37D733913Ad82A5641a8c19D"'
+ETHER_CONTRACT_ADDRESS='""'
+DEV_CONTRACT_ADDRESS='"0x5fbdb2315678afecb367f032d93f642f64180aa3"'
+ALCHEMY_CONTRACT_ADDRESS='"0xE88c5417E2894cbe37D733913Ad82A5641a8c19D"'
 ```
+
+tips:
+if you deployed a new contract on other chain, these files are which you need to config
+1、packages/web-ui/.env
+2、packages/web-ui/src/constants/contract.ts
+3、packages/web-ui/vite.config.ts (this file is environment configuration)
+4、packages/web-ui/src/vite-env.d.ts (this file is used to type check)
 
 ## deploy
 

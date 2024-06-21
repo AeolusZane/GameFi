@@ -1,7 +1,7 @@
 import { useQueryHeroes } from '@hook/useQueryHeroes';
 import { Contract } from '@ethersproject/contracts';
 import { BigNumber } from '@ethersproject/bignumber'
-import { CONTRACT_ADDRESS } from '@constants/contract';
+import { CONTRACT_ADDRESS_LIST } from '@constants/contract';
 import Hero from '@abi/Hero.sol/Hero.json'
 import { useWeb3React } from '@web3-react/core';
 import { useEffect, createContext, ReactNode } from 'react';
@@ -49,7 +49,12 @@ function initHeroContract() {
             return;
         }
         const signer = provider.getSigner();
-        const contract = new Contract(CONTRACT_ADDRESS, Hero.abi, signer);
+        const contractAddress = CONTRACT_ADDRESS_LIST.find(item => item.chainId === chainId)?.address;
+        if (!contractAddress) {
+            console.error('contract address not found');
+            return;
+        }
+        const contract = new Contract(contractAddress, Hero.abi, signer);
         setHeroContract(contract);
     }, [provider, chainId, setHeroContract])
 }

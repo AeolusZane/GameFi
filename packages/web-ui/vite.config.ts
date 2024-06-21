@@ -28,6 +28,7 @@ export default defineConfig({
   },
   define: {
     "process.env.DEV_CONTRACT_ADDRESS": process.env.DEV_CONTRACT_ADDRESS,
-    "process.env.PRO_CONTRACT_ADDRESS": process.env.PRO_CONTRACT_ADDRESS,
+    "process.env.ALCHEMY_CONTRACT_ADDRESS": process.env.ALCHEMY_CONTRACT_ADDRESS,
+    "process.env.ETHER_CONTRACT_ADDRESS": process.env.ETHER_CONTRACT_ADDRESS,
   }
 })
