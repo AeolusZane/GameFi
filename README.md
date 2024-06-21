@@ -17,7 +17,7 @@ publish processing would be like this...
 
 execute `make` to publish this project into your vercel account
 
-![](./assets/vercel_build.png)
+![](./assets/vercel_build.jpg)
 
 ## Already Deployed On The Test Net ;) ;) ❗️❗️
 
