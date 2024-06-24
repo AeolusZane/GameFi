@@ -4,7 +4,12 @@ export const enum MAIN_NETS {
     ALCHEMY = 11155111,
 }
 
-export const SupportChains = [MAIN_NETS.ETHER, MAIN_NETS.LOCAL_TEST, MAIN_NETS.ALCHEMY]
+const DEV = process.env.NODE_ENV === 'development'
+
+const DEV_CHAINS = [MAIN_NETS.ETHER, MAIN_NETS.LOCAL_TEST, MAIN_NETS.ALCHEMY]
+const PROD_CHAINS = [MAIN_NETS.ETHER, MAIN_NETS.ALCHEMY]
+
+export const SupportChains = DEV ? DEV_CHAINS : PROD_CHAINS;
 
 export const CHAIN_NAMES = {
     [MAIN_NETS.ETHER]: 'Ethereum',
@@ -41,7 +46,6 @@ const CHAIN_INFO_MAP = {
         nativeCurrency: { name: 'Sepolia Ether', symbol: 'ETH', decimals: 18 },
         // get rpcUrl on alchemy
     }
-
 }
 
 export function getChainInfo(chainId: MAIN_NETS) {

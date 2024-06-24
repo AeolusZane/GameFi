@@ -260,3 +260,4 @@ this is a MetaMask Error also. refresh the nonce data in the setting of the Meta
 - 修改一下项目内链合约配置
 - 使用vercel部署前台项目
 - 修改部分build报错
+- 切链时英雄列表没更新

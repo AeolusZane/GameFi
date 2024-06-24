@@ -46,6 +46,7 @@ function initHeroContract() {
     const [, setHeroContract] = useAtom<Contract | null>(heroContractAtom);
     useEffect(() => {
         if (!provider || !chainId) {
+            setHeroContract(null);
             return;
         }
         const signer = provider.getSigner();

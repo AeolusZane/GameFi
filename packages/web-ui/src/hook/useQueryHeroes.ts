@@ -86,13 +86,13 @@ export function useQueryHeroes() {
   const heroContract = useHeroContract();
 
   useEffect(() => {
+    setHeroes([]);
+    setHeroesRawData([]);
     queryHeroes();
   }, [provider, account, chainId, heroContract])
 
   const queryHeroes = async () => {
     if (!provider || !heroContract) {
-      setHeroes([]);
-      setHeroesRawData([]);
       return;
     }
     try {
