@@ -261,3 +261,7 @@ this is a MetaMask Error also. refresh the nonce data in the setting of the Meta
 - 使用vercel部署前台项目
 - 修改部分build报错
 - 切链时英雄列表没更新
+
+2024/6/25
+- 添加地球模块让界面更具科技感
+- balance不足时提示报错
