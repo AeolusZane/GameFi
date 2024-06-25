@@ -46,6 +46,9 @@
       "@abi/*": [
         "../contract/artifacts/contracts/*"
       ],
+      "@assets/*": [
+        "./src/assets/*"
+      ],
     }
   },
   "include": [

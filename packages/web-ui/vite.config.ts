@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import vitePluginString from 'vite-plugin-string'
 // import { tamaguiExtractPlugin, tamaguiPlugin } from '@tamagui/vite-plugin'
 // import tamaguiConfig from './tamagui.config'
 import path from 'path'
@@ -9,7 +10,9 @@ dotenv.config();
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(),
+  plugins: [
+    react(),
+    vitePluginString()
     // tamaguiPlugin(tamaguiConfig),
     // process.env.NODE_ENV === 'production' ? tamaguiExtractPlugin(tamaguiConfig) : null,
 
@@ -24,6 +27,7 @@ export default defineConfig({
       "@provider": path.resolve(__dirname, "src/provider"),
       "@contract": path.resolve(__dirname, "src/contract"),
       "@abi": path.resolve(__dirname, "../contract/artifacts/contracts"),
+      "@assets": path.resolve(__dirname, "src/assets"),
     }
   },
   define: {

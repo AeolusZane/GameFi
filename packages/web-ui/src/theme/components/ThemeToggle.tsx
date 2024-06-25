@@ -21,6 +21,5 @@ const themeModeAtom = atomWithStorage<ThemeMode>('interface_color_theme', ThemeM
 export function useIsDarkMode(): boolean {
   const mode = useAtomValue(themeModeAtom)
   const systemTheme = useAtomValue(systemThemeAtom)
-
   return (mode === ThemeMode.AUTO ? systemTheme : mode) === ThemeMode.DARK
 }
