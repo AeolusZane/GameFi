@@ -46,7 +46,10 @@ function HeroPage() {
 
     useEffect(() => {
         if (transactionHash) {
-            show(transactionHash)
+            show({
+                title: 'Transaction Succeed!',
+                text: transactionHash,
+            })
         }
     }, [transactionHash])
 
