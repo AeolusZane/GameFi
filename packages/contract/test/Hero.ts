@@ -33,8 +33,17 @@ describe("HeroTest", function () {
         hero = await loadFixture(createHero);
     })
 
-    describe("create Hero", function () {
+    describe("HeroFactory ERC721 Metadata", function () {
+        it("check symbol", async function () {
+            expect(await hero.symbol()).to.equal("HRO");
+        });
 
+        it("check name", async function () {
+            expect(await hero.name()).to.equal("HeroFactory");
+        });
+    });
+
+    describe("create Hero", function () {
         it("should fail at creating hero case of payment", async function () {
             let e;
             try {
