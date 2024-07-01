@@ -265,3 +265,29 @@ this is a MetaMask Error also. refresh the nonce data in the setting of the Meta
 2024/6/25
 - 添加地球模块让界面更具科技感
 - balance不足时提示报错
+
+2024/7/1
+- 新增ERC721实现
+- 接口实现
+    - 
+- 其它
+    - transferHero改为internal，transferFrom时调用
+    - _mintHero实现，添加到createHero中
+    - 新增以下内容，创建NFT名字，Token映射
+    ```
+    mapping(address => uint[]) addressToHeroes;
+    mapping(uint => uint) heroToTokenId;
+
+    constructor(address _feeToSetter) ERC721("HeroFactory", "HRO") {
+        feeToSetter = _feeToSetter;
+    }
+
+    function _getHero(uint tokenId) public view returns (uint) {
+        return heroToTokenId[tokenId];
+    }
+    function _setHeroTokenId(uint tokenId, uint hero) internal {
+        heroToTokenId[tokenId] = hero;
+    }
+    ```
+
+    

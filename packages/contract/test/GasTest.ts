@@ -45,17 +45,17 @@ describe("GasTest", function () {
         }
     });
 
-    it("test transferHero gas", async function () {
-        await hero.createHero(0, {
-            value: ethers.parseEther("0.001")
-        });
-        const heroes = await hero.getHeroes();
-        for (let i = 0; i < 100; i++) {
-            if (i % 2 === 0) {
-                await hero.transferHero(heroes[0], OTHER.address);
-            } else {
-                await hero.connect(OTHER).transferHero(heroes[0], OWNER.address);
-            }
-        }
-    })
+    // it("test transferHero gas", async function () {
+    //     await hero.createHero(0, {
+    //         value: ethers.parseEther("0.001")
+    //     });
+    //     const heroes = await hero.getHeroes();
+    //     for (let i = 0; i < 100; i++) {
+    //         if (i % 2 === 0) {
+    //             await hero.transferHero(heroes[0], OTHER.address);
+    //         } else {
+    //             await hero.connect(OTHER).transferHero(heroes[0], OWNER.address);
+    //         }
+    //     }
+    // })
 })
