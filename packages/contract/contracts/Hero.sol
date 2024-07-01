@@ -1,7 +1,6 @@
 // // SPDX-License-Identifier: MIT
 pragma solidity =0.8.20;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import {ERC721URIStorage} from "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
 contract Hero is ERC721 {
     address public feeToSetter;
@@ -58,6 +57,10 @@ contract Hero is ERC721 {
         address to,
         uint256 tokenId
     ) public override {
+        require(
+            getApproved(tokenId) == from,
+            "ERC721: transfer caller is not owner nor approved"
+        );
         super.transferFrom(from, to, tokenId);
         uint hero = getHero(tokenId);
         transferHero(hero, to);

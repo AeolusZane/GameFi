@@ -190,6 +190,20 @@ describe("HeroTest", function () {
     })
 
     describe("TransferHero", function () {
+        it("need approve before transfer", async function () {
+            await hero.setRandom(69);
+            await hero.createHero(0, {
+                value: ethers.parseEther("0.001")
+            });
+            const tokenId0 = 0;
+
+            try {
+                await hero.transferFrom(OWNER.address, OTHER.address, tokenId0);
+            } catch (e: any) {
+                expect(e.message.includes("ERC721: transfer caller is not owner nor approved")).to.equal(true);
+            }
+        })
+
         it("should transfer hero to other address", async function () {
             await hero.setRandom(69);
             await hero.createHero(0, {
@@ -199,16 +213,18 @@ describe("HeroTest", function () {
             await hero.createHero(0, {
                 value: ethers.parseEther("0.001")
             });
-            const heroes = await hero.getHeroes();
+
             const tokenId0 = 0;
 
+            hero.approve(OWNER.address, 0);
+
+            const heroes = await hero.getHeroes();
             await expect(hero.transferFrom(OWNER.address, OTHER.address, tokenId0))
                 .emit(hero, "TransferHero")
                 .withArgs(OWNER.address, OTHER.address, heroes[0], tokenId0);
 
             const otherHeroes = await hero.connect(OTHER).getHeroes();
             const newHeroes = await hero.getHeroes();
-
             /**
              * heroes列表更新
              * 1. 从OWNER的heroes列表中删除
