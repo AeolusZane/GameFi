@@ -3,6 +3,7 @@
 ----
 
 Tags: `hardhat` `web3-react` `ethers.js` `solidity` `alchemy` `typescript` `react` `react-native` `web3.js`
+## ERC721 Implemented in the branch ERC721
 
 ## Project Demo Published Online Now ;) 
 
