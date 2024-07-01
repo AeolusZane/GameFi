@@ -242,5 +242,99 @@ describe("HeroTest", function () {
             expect(await hero.ownerOf(0)).to.equal(OTHER.address);
             expect(await hero.ownerOf(1)).to.equal(OWNER.address);
         })
+
+        /**
+         * 调用重载函数
+         */
+        it("should safeTransfer hero from address0 to address1", async function () {
+            await hero.setRandom(69);
+            await hero.createHero(0, {
+                value: ethers.parseEther("0.001")
+            });
+            await hero.setRandom(52);
+            await hero.createHero(0, {
+                value: ethers.parseEther("0.001")
+            });
+
+            const tokenId0 = 0;
+
+            hero.approve(OWNER.address, 0);
+
+            const heroes = await hero.getHeroes();
+            await expect(hero["safeTransferFrom(address,address,uint256)"](OWNER.address, OTHER.address, tokenId0))
+                .emit(hero, "TransferHero")
+                .withArgs(OWNER.address, OTHER.address, heroes[0], tokenId0);
+
+            const otherHeroes = await hero.connect(OTHER).getHeroes();
+            const newHeroes = await hero.getHeroes();
+            /**
+             * heroes列表更新
+             * 1. 从OWNER的heroes列表中删除
+             * 2. 添加到OTHER的heroes列表中
+             * 3. 保持其他hero不变
+             */
+            expect(newHeroes.length).to.equal(1);
+            expect(otherHeroes.length).to.equal(1);
+            expect(otherHeroes[0]).to.equal(heroes[0]);
+            expect(newHeroes[0]).to.equal(heroes[1]);
+
+            /**
+             * tokenId归属更新
+             */
+            expect(await hero.ownerOf(0)).to.equal(OTHER.address);
+            expect(await hero.ownerOf(1)).to.equal(OWNER.address);
+        });
+
+        it("should fail to transfer if not the owner of the hero even approved", async function () {
+            await hero.setRandom(69);
+            await hero.createHero(0, {
+                value: ethers.parseEther("0.001")
+            });
+            await hero.setRandom(52);
+            await hero.createHero(0, {
+                value: ethers.parseEther("0.001")
+            });
+
+            const tokenId0 = 0;
+
+            hero.approve(OWNER.address, 0);
+
+            try {
+                await hero.connect(OTHER).transferFrom(OWNER.address, OTHER.address, tokenId0);
+            } catch (e: any) {
+                expect(e.message.includes("ERC721: transfer caller is not owner nor approved")).to.equal(true);
+            }
+        });
+    });
+    describe("ERC721", function () {
+        it("balanceOf heroes need to be 2", async function () {
+            await hero.setRandom(69);
+            await hero.createHero(0, {
+                value: ethers.parseEther("0.001")
+            });
+            await hero.setRandom(42);
+            await hero.createHero(0, {
+                value: ethers.parseEther("0.001")
+            });
+
+            expect(await hero.balanceOf(OWNER.address)).to.equal(2);
+        });
+
+        it(`ownerOf tokenId 0 should be address0`, async function () {
+            await hero.setRandom(69);
+            await hero.createHero(0, {
+                value: ethers.parseEther("0.001")
+            });
+            expect(await hero.ownerOf(0)).to.equal(OWNER.address);
+        });
+
+        it("approve address1 to transfer hero", async function () {
+            await hero.setRandom(69);
+            await hero.createHero(0, {
+                value: ethers.parseEther("0.001")
+            });
+            await hero.approve(OTHER.address, 0);
+            expect(await hero.getApproved(0)).to.equal(OTHER.address);
+        });
     });
 })

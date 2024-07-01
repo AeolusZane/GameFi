@@ -51,6 +51,19 @@ contract Hero is ERC721 {
                 )
             );
     }
+    function _isApprovedAndOwner(
+        address spender,
+        uint tokenId
+    ) internal view returns (bool) {
+        return _isOwner(spender, tokenId) && getApproved(tokenId) == spender;
+    }
+
+    function _isOwner(
+        address spender,
+        uint tokenId
+    ) internal view returns (bool) {
+        return ownerOf(tokenId) == spender;
+    }
 
     function transferFrom(
         address from,
@@ -58,12 +71,11 @@ contract Hero is ERC721 {
         uint256 tokenId
     ) public override {
         require(
-            getApproved(tokenId) == from,
+            _isApprovedAndOwner(_msgSender(), tokenId),
             "ERC721: transfer caller is not owner nor approved"
         );
-        super.transferFrom(from, to, tokenId);
         uint hero = getHero(tokenId);
-        transferHero(hero, to);
+        transferHero(from, to, tokenId);
         emit TransferHero(from, to, hero, tokenId);
     }
 
@@ -97,9 +109,11 @@ contract Hero is ERC721 {
         return uint32((hero >> 22) & 0x1F);
     }
 
-    function transferHero(uint hero, address other) internal {
+    function transferHero(address from, address to, uint tokenId) internal {
+        uint hero = getHero(tokenId);
+        address owner = ownerOf(tokenId);
         // 将sender的hero转移到other
-        uint[] storage heroes = addressToHeroes[msg.sender];
+        uint[] storage heroes = addressToHeroes[owner];
         uint len = heroes.length;
 
         for (uint i = 0; i < len; i++) {
@@ -110,7 +124,8 @@ contract Hero is ERC721 {
             }
         }
         heroes.pop();
-        addressToHeroes[other].push(hero);
+        addressToHeroes[to].push(hero);
+        super.transferFrom(from, to, tokenId);
     }
 
     // payable：表示这个函数可以接受以太币
@@ -148,8 +163,8 @@ contract Hero is ERC721 {
 
     function _mintHero(uint hero) internal {
         uint256 tokenId = _nextTokenId++;
-        _mint(msg.sender, tokenId);
         _setHeroTokenId(tokenId, hero);
+        _mint(msg.sender, tokenId);
         emit TransferHero(address(0), msg.sender, hero, tokenId);
     }
 }
