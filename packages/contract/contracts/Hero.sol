@@ -156,7 +156,8 @@ contract Hero is ERC721 {
             len--;
             stats[pos] = stats[len];
         } while (len > 0);
-
+        // @deprecated: in the future, we will use backend to store hero data array
+        // on the chain, we only store the tokenId->hero mapping
         addressToHeroes[msg.sender].push(hero);
         _mintHero(hero);
     }
