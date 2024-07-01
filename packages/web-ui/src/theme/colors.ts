@@ -133,7 +133,7 @@ export type ThemeColors = typeof darkTheme
 
 const commonTheme = {
   white: colors.white,
-  black: colors.black,
+  black: colors.black,  
 
   chain_1: colors.networkEthereum,
   chain_3: colors.yellow400,

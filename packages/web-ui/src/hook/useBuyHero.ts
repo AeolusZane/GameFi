@@ -3,7 +3,6 @@ import { useHeroContract } from '@contract/useHeroContract'
 import { useToast } from '@components/Toast'
 import Web3 from 'web3';
 import { atom, useAtom } from 'jotai';
-import { useState } from 'react';
 const transactionHashAtom = atom<string | null>(null);
 
 export function useBuyHero() {
