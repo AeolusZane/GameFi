@@ -43,7 +43,7 @@ describe("HeroTest", function () {
         });
     });
 
-    describe("create Hero", function () {
+    describe("Create Hero", function () {
         it("should fail at creating hero case of payment", async function () {
             let e;
             try {
@@ -328,7 +328,7 @@ describe("HeroTest", function () {
             expect(await hero.ownerOf(0)).to.equal(OWNER.address);
         });
 
-        it("approve address1 to transfer hero", async function () {
+        it("approve address1", async function () {
             await hero.setRandom(69);
             await hero.createHero(0, {
                 value: ethers.parseEther("0.001")
